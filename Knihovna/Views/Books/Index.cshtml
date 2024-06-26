@@ -1,0 +1,22 @@
+﻿@using Knihovna.DTO
+@model IEnumerable< BookDto>
+<div>
+	<a asp-action="Create" class="btn btn-success">Přidat knihu</a>
+</div>
+<hr />
+@foreach(var book in Model){
+	<div class="border border-1 border-dark p-2">
+		<h5>Titul: @book.Title</h5>
+		<h4>Autor: @book.AuthorName</h4>
+		<h4>Žánr: @book.Genre</h4>
+		<h4>ISBN: @book.ISBN</h4>
+		<p>Popis: @book.Description</p>
+		<a class="btn btn-warning" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
+		<form method="post" >
+
+			<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger"  >Smazat</button>
+			 
+		</form>
+	</div>
+}
+

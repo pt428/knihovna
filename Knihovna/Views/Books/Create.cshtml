@@ -1,0 +1,30 @@
+﻿@using Knihovna.DTO
+@model BookDto
+<div>
+	<h4>Vložit novou knihu</h4>
+	<form asp-action="Create">
+		
+		<div class="form-group">
+			<label asp-for="Title" >Titul</label>
+			<input type="text" asp-for="Title" class="form-control" />
+		</div>		
+		<div class="form-group">
+			<label asp-for="ISBN">ISBN</label>
+			<input type="text" asp-for="ISBN" class="form-control" />
+		</div>		
+		<div class="form-group">
+			<label asp-for="Genre">Žánr</label>
+			<input type="text" asp-for="Genre" class="form-control" />
+		</div>		
+		<div class="form-group">
+			<label asp-for="Description">Popis</label>
+			<input type="text" asp-for="Description" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label asp-for="AuthorName">Autor</label>
+			<input type="text" asp-for="AuthorName" class="form-control" />
+		</div>
+		 
+	<input type="submit" class="btn btn-success" value="Create" />
+	</form>
+</div>

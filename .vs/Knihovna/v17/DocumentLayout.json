@@ -1,0 +1,127 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pt75\\source\\repos\\Knihovna\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\source\\repos\\knihovna\\knihovna\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\source\\repos\\knihovna\\knihovna\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\source\\repos\\knihovna\\knihovna\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\source\\repos\\knihovna\\knihovna\\views\\books\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\books\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\source\\repos\\knihovna\\knihovna\\views\\books\\notfound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\books\\notfound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 841,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Books\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\Edit.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Books\\Edit.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-26T18:23:29.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "Knihovna\\Controllers\\BooksController.cs",
+              "ToolTip": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "Knihovna\\Controllers\\BooksController.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAADwvzcAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T18:02:10.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\Index.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Books\\Index.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\Index.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Books\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAABdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-26T18:00:57.031Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 772,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NotFound.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\NotFound.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Books\\NotFound.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Views\\Books\\NotFound.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Books\\NotFound.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-26T18:14:37.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "Knihovna\\Services\\BookService.cs",
+              "ToolTip": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Services\\BookService.cs",
+              "RelativeToolTip": "Knihovna\\Services\\BookService.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwDgAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T18:02:12.367Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
