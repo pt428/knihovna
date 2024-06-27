@@ -1,15 +1,18 @@
 ﻿using Knihovna.Services;
 using Microsoft.AspNetCore.Mvc;
 using Knihovna.DTO;
+using Microsoft.AspNetCore.Identity;
+using Knihovna.Models;
 namespace Knihovna.Controllers
 {
 	public class BooksController : Controller
 	{
 		private BookService _bookService;
-
-		public BooksController(BookService bookService)
+		private UserManager<AppUser> _userManager;
+		public BooksController(BookService bookService, UserManager<AppUser> userManager)
 		{
 			_bookService = bookService;
+			_userManager = userManager;
 		}
 		//*******************************
 		//********* INDEX   ************
@@ -81,7 +84,8 @@ namespace Knihovna.Controllers
 			{
 				return View("NotFound");
 			}
-			await _bookService.ReservationAsync(id);
+            AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+            await _bookService.ReservationAsync(id,user);
 			return RedirectToAction("Index");
 		}		
 		//*******************************
@@ -95,7 +99,9 @@ namespace Knihovna.Controllers
 			{
 				return View("NotFound");
 			}
-			await _bookService.BorrowAsync(id);
+			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+			await _bookService.BorrowAsync(id, user);
+	 
 			return RedirectToAction("Index");
 		}
 	}
