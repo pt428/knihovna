@@ -18,6 +18,18 @@ builder.Services.AddScoped<ReaderService>();
 builder.Services.AddScoped<BorrowedService>();
 builder.Services.AddScoped<ReservationService>();
 builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+	opt.Password.RequiredLength = 8;
+	opt.Password.RequireLowercase = true;
+});
+builder.Services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Authenticate/Login");
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+	opt.Cookie.Name = ".AspNetCore.Identity.Application";
+	opt.ExpireTimeSpan = TimeSpan.FromMinutes(1000);
+	opt.SlidingExpiration = true;
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -9,11 +9,15 @@ namespace Knihovna.Controllers
     {
         private UserManager<AppUser> _userManager;
         private IPasswordHasher<AppUser> _passwordHasher;
+        private IPasswordValidator<AppUser> _passwordValidator;
+        private RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher)
+        public UsersController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher, IPasswordValidator<AppUser> passwordValidator, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _passwordHasher = passwordHasher;
+            _passwordValidator = passwordValidator;
+            _roleManager = roleManager;
         }
         //*******************************
         //********* INDEX   ************
@@ -41,16 +45,23 @@ namespace Knihovna.Controllers
 
                 };
                 IdentityResult result = await _userManager.CreateAsync(appUser, userVM.Password);
+                IdentityRole identityRole = await _roleManager.FindByNameAsync("Čtenář");
+                if (identityRole == null)
+                {
+                    IdentityResult identityResult = await _roleManager.CreateAsync(new IdentityRole { Name = "Čtenář" });
+                    if (identityResult == null)
+                    {
+                       Errors(identityResult);
+                    }
+                }
+                await _userManager.AddToRoleAsync(appUser, "Čtenář");
                 if ((result.Succeeded))
                 {
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    foreach (IdentityError error in result.Errors)
-                    {
-                        ModelState.AddModelError("", error.Description);
-                    }
+                    Errors(result);
                 }
             }
             return View(userVM);
@@ -77,7 +88,17 @@ namespace Knihovna.Controllers
             if (appUser != null)
             {
                 appUser.Email = email;
+                IdentityResult validPass=null;
+                validPass = await _passwordValidator.ValidateAsync(_userManager,appUser,password);
+                if (validPass.Succeeded)
+                {
+
                 appUser.PasswordHash = _passwordHasher.HashPassword(appUser, password);
+                }
+                else
+                {
+                    Errors(validPass);
+                }
                 IdentityResult identityResult = await _userManager.UpdateAsync(appUser);
 
                 if (identityResult.Succeeded)

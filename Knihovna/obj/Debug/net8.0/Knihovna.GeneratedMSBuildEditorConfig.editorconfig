@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Authenticate/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRlXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Books/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -80,6 +84,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Reservation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Roles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Roles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Roles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Shared/Error.cshtml]

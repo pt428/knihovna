@@ -11,7 +11,6 @@
 	<table class="table table-bordered table-striped ">
 		@foreach (var book in Model)
 		{
-
 			<thead>
 				<tr>
 					<td colspan="5" style="background-color: #FFADAD;"></td>
@@ -42,9 +41,6 @@
 				</tr>
 				<tr>
 					<td>
-
-
-
 						@if (book.Reserved)
 						{
 
@@ -70,78 +66,16 @@
 								<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
 							</form>
 						</td>
-
 						}
-
 					<td><a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a></td>
-
 					<td>
 						<form method="post" class="form-inline">
 							<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
 						</form>
 					</td>
-
-
 					</td>
-
 				</tr>
 			</tbody>
 		}
-
 	</table>
-	<div class="row">
 
-		@foreach (var book in Model)
-		{
-			<div class="col-sm mb-3 mb-sm-0">
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h5 class="card-title">@book.Title</h5>
-						<h6 class="card-subtitle >@book.AuthorName</h6>
-						<h6 class="card-subtitle  >@book.Genre</h6>
-						<h6 class="card-subtitle  >@book.Year</h6>
-						<h6 class="card-subtitle  >@book.ISBN</h6>
-						<p class="card-text">@book.Description</p>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							@if (book.Reserved)
-							{
-								<span>Rezervováno</span>
-							}
-							else
-							{
-								<form method="post" class="form-inline">
-									<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
-								</form>
-							}
-						</li>
-						<li class="list-group-item">
-							@if (book.Borrowed)
-							{
-								<span>Půjčeno</span>
-							}
-							else
-							{
-								<form method="post" class="form-inline">
-									<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
-								</form>
-							}
-						</li>
-						<li class="list-group-item"><a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a></li>
-						<li class="list-group-item">
-							<form method="post" class="form-inline">
-								<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
-							</form>
-						</li>
-					</ul>
-					<div class="card-body">
-						<a href="#" class="card-link">Card link</a>
-						<a href="#" class="card-link">Another link</a>
-					</div>
-				</div>
-			</div>
-		}
-	</div>
-
-</div>
