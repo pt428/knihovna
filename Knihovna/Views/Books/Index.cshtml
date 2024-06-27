@@ -1,22 +1,147 @@
-﻿@using Knihovna.DTO
-@model IEnumerable< BookDto>
-<div>
-	<a asp-action="Create" class="btn btn-success">Přidat knihu</a>
-</div>
-<hr />
-@foreach(var book in Model){
-	<div class="border border-1 border-dark p-2">
-		<h5>Titul: @book.Title</h5>
-		<h4>Autor: @book.AuthorName</h4>
-		<h4>Žánr: @book.Genre</h4>
-		<h4>ISBN: @book.ISBN</h4>
-		<p>Popis: @book.Description</p>
-		<a class="btn btn-warning" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
-		<form method="post" >
+﻿    @using Knihovna.DTO
+    @model IEnumerable< BookDto>
+<!-- Main Container -->
+<div class="container mt-5">
+	<!-- Book List -->
+	<h2>Seznam knih</h2>
 
-			<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger"  >Smazat</button>
-			 
-		</form>
+	<div>
+		<a asp-action="Create" class="btn btn-success">Přidat knihu</a>
 	</div>
-}
+	<table class="table table-bordered table-striped ">
+		@foreach (var book in Model)
+		{
 
+			<thead>
+				<tr>
+					<td colspan="5" style="background-color: #FFADAD;"></td>
+				</tr>
+				<tr>
+					<th>Titul</th>
+					<th>Autor</th>
+					<th>Žánr</th>
+					<th>Rok</th>
+					<th>ISBN</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@book.Title</td>
+					<td>@book.AuthorName</td>
+					<td>@book.Genre</td>
+					<td>@book.Year</td>
+					<td>@book.ISBN</td>
+
+				</tr>
+				<tr>
+					<th colspan="5">Popis</th>
+				</tr>
+				<tr>
+					<td colspan="5">@book.Description</td>
+				</tr>
+				<tr>
+					<td>
+
+
+
+						@if (book.Reserved)
+						{
+
+						<td><span>Rezervováno</span></td>
+						}
+						else
+						{
+						<td>
+							<form method="post" class="form-inline">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
+							</form>
+						</td>
+						}
+						@if (book.Borrowed)
+						{
+
+						<td><span>Půjčeno</span></td>
+						}
+						else
+						{
+						<td>
+							<form method="post" class="form-inline">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
+							</form>
+						</td>
+
+						}
+
+					<td><a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a></td>
+
+					<td>
+						<form method="post" class="form-inline">
+							<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
+						</form>
+					</td>
+
+
+					</td>
+
+				</tr>
+			</tbody>
+		}
+
+	</table>
+	<div class="row">
+
+		@foreach (var book in Model)
+		{
+			<div class="col-sm mb-3 mb-sm-0">
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title">@book.Title</h5>
+						<h6 class="card-subtitle >@book.AuthorName</h6>
+						<h6 class="card-subtitle  >@book.Genre</h6>
+						<h6 class="card-subtitle  >@book.Year</h6>
+						<h6 class="card-subtitle  >@book.ISBN</h6>
+						<p class="card-text">@book.Description</p>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							@if (book.Reserved)
+							{
+								<span>Rezervováno</span>
+							}
+							else
+							{
+								<form method="post" class="form-inline">
+									<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
+								</form>
+							}
+						</li>
+						<li class="list-group-item">
+							@if (book.Borrowed)
+							{
+								<span>Půjčeno</span>
+							}
+							else
+							{
+								<form method="post" class="form-inline">
+									<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
+								</form>
+							}
+						</li>
+						<li class="list-group-item"><a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a></li>
+						<li class="list-group-item">
+							<form method="post" class="form-inline">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
+							</form>
+						</li>
+					</ul>
+					<div class="card-body">
+						<a href="#" class="card-link">Card link</a>
+						<a href="#" class="card-link">Another link</a>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+</div>

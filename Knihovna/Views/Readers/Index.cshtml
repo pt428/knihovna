@@ -1,0 +1,41 @@
+﻿    @using Knihovna.DTO
+    @model IEnumerable<ReaderDto>
+<!-- Main Container -->
+<div class="container mt-5">
+    <!-- Empployee List -->
+    <h2>Seznam čtenářů</h2>
+
+    <div>
+        <a asp-action="Create" class="btn btn-success">Přidat čtenáře</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>DateOfBirth</th>
+                <th>Editovat</th>
+                <th>Smazat</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reader in Model)
+            {
+                <tr>
+                    <td>@reader.FirstName</td>
+                    <td>@reader.LastName</td>
+                    <td>@reader.DateOfBirth.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@reader.Id">Editovat</a>
+                    </td>
+                    <td>
+                        <form method="post">
+                            <button type="submit" asp-route-id="@reader.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

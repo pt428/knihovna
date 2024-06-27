@@ -1,5 +1,6 @@
 using Knihovna.Models;
 using Knihovna.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 		builder.Configuration["ConnectionStrings:LibraryDbConnection"]);
 });
 builder.Services.AddScoped<BookService>();
-
+builder.Services.AddScoped<EmployeeService>();
+builder.Services.AddScoped<ReaderService>();
+builder.Services.AddScoped<BorrowedService>();
+builder.Services.AddScoped<ReservationService>();
+builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,7 +32,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

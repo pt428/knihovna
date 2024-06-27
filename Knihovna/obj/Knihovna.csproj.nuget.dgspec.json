@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Knihovna.csproj": {}
+    "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Knihovna.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Knihovna.csproj": {
+    "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Knihovna.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Knihovna.csproj",
+        "projectUniqueName": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Knihovna.csproj",
         "projectName": "Knihovna",
-        "projectPath": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\Knihovna.csproj",
+        "projectPath": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Knihovna.csproj",
         "packagesPath": "C:\\Users\\pt75\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pt75\\source\\repos\\Knihovna\\Knihovna\\obj\\",
+        "outputPath": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pt75\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.6, )"

@@ -1,0 +1,93 @@
+﻿ @using Knihovna.DTO
+    @model IEnumerable< BookDto>
+<!-- Main Container -->
+<div class="container mt-5">
+	<!-- Book List -->
+	<h2>Seznam knih</h2>
+
+	<div>
+		<a asp-action="Create" class="btn btn-success">Přidat knihu</a>
+	</div>
+	<table class="table table-bordered table-striped ">
+		@foreach (var book in Model)
+		{
+
+			<thead>
+				<tr>
+					<td colspan="5" style="background-color: #FFADAD;"></td>
+				</tr>
+				<tr>
+					<th>Titul</th>
+					<th>Autor</th>
+					<th>Žánr</th>
+					<th>Rok</th>
+					<th>ISBN</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@book.Title</td>
+					<td>@book.AuthorName</td>
+					<td>@book.Genre</td>
+					<td>@book.Year</td>
+					<td>@book.ISBN</td>
+
+				</tr>
+				<tr>
+					<th colspan="5">Popis</th>
+				</tr>
+				<tr>
+					<td colspan="5">@book.Description</td>
+				</tr>
+				<tr>
+					<td>
+
+
+
+						@if (book.Reserved)
+						{
+
+						<td><span>Rezervováno</span></td>
+						}
+						else
+						{
+						<td>
+							<form method="post" class="form-inline">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
+							</form>
+						</td>
+						}
+						@if (book.Borrowed)
+						{
+
+						<td><span>Půjčeno</span></td>
+						}
+						else
+						{
+						<td>
+							<form method="post" class="form-inline">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
+							</form>
+						</td>
+
+						}
+
+					<td><a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a></td>
+
+					<td>
+						<form method="post" class="form-inline">
+							<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
+						</form>
+					</td>
+
+
+					</td>
+
+				</tr>
+			</tbody>
+		}
+
+	</table>
+
+</div>

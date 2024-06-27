@@ -9,55 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Knihovna
 build_property.RootNamespace = Knihovna
-build_property.ProjectDir = C:\Users\pt75\source\repos\Knihovna\Knihovna\
+build_property.ProjectDir = C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\pt75\source\repos\Knihovna\Knihovna
+build_property.MSBuildProjectDirectory = C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Books/Create.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Books/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Books/Edit.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Books/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Books/Index.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Books/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Books/NotFound.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Books/NotFound.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcTm90Rm91bmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Home/Index.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Borrowed/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9ycm93ZWRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Employees/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Employees/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Employees/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Employees/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVzXE5vdEZvdW5kLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Home/Privacy.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Shared/Error.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Readers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZGVyc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Readers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZGVyc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Readers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZGVyc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Readers/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZGVyc1xOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Reservation/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzZXJ2YXRpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/_ViewImports.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Users/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Users/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/_ViewStart.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/pt75/source/repos/Knihovna/Knihovna/Views/Shared/_Layout.cshtml]
+[C:/Users/pt75/OneDrive/1_VSB rekvalifikace/2-C\#/Moje projekty/Knihovna/Knihovna/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-m8zaorqusu

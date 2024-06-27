@@ -1,0 +1,81 @@
+﻿    @using Knihovna.DTO
+    @model IEnumerable<BookDto>
+<!-- Main Container -->
+<div class="container mt-5">
+	<!-- Book List -->
+	<h2>Seznam vypůjčených knih</h2>
+ 
+	<table class="table table-bordered table-striped ">
+		@foreach (var book in Model)
+		{
+			<thead>
+				<tr>
+					<th>Titul</th>
+					<th>Autor</th>
+					<th>Žánr</th>
+					<th>Rok</th>
+					<th>ISBN</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>@book.Title</td>
+					<td>@book.AuthorName</td>
+					<td>@book.Genre</td>
+					<td>@book.Year</td>
+					<td>@book.ISBN</td>
+
+				</tr>
+				<tr>
+					<th colspan="5">Popis</th>
+				</tr>
+				<tr>
+					<td colspan="5">@book.Description</td>
+				</tr>
+				<tr>
+					<td colspan="5">
+						@if (book.Reserved)
+						{
+
+							<span>Rezervováno</span>
+						}
+						else
+						{
+							<form method="post">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
+							</form>
+
+						}
+						@if (book.Borrowed)
+						{
+
+							<span>Půjčeno</span>
+						}
+						else
+						{
+							<form method="post">
+								<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
+							</form>
+
+
+						}
+
+						<a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
+
+						<form method="post">
+							<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
+						</form>
+
+					</td>
+				<tr>
+					<td colspan="5"><hr /></td>
+				</tr>
+				</tr>
+			</tbody>
+		}
+
+	</table>
+
+
+</div>
