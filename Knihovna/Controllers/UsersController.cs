@@ -1,7 +1,9 @@
 ﻿using Knihovna.Models;
+using Knihovna.Services;
 using Knihovna.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Knihovna.Controllers
 {
@@ -11,20 +13,25 @@ namespace Knihovna.Controllers
         private IPasswordHasher<AppUser> _passwordHasher;
         private IPasswordValidator<AppUser> _passwordValidator;
         private RoleManager<IdentityRole> _roleManager;
+        private LibraryUserService _libraryUserService;
 
-        public UsersController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher, IPasswordValidator<AppUser> passwordValidator, RoleManager<IdentityRole> roleManager)
-        {
+        public UsersController(UserManager<AppUser> userManager, IPasswordHasher<AppUser> passwordHasher, IPasswordValidator<AppUser> passwordValidator, RoleManager<IdentityRole> roleManager, LibraryUserService libraryUserService) { 
             _userManager = userManager;
             _passwordHasher = passwordHasher;
             _passwordValidator = passwordValidator;
             _roleManager = roleManager;
+            _libraryUserService = libraryUserService;
+            
         }
         //*******************************
         //********* INDEX   ************
         //*******************************
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
-            return View(_userManager.Users);
+            var allUsers = await _libraryUserService.GetAllAsync();
+
+			return View(allUsers);
+           // return View(_userManager.Users);
         }
         //*******************************
         //********* CREATE START  ************
@@ -36,11 +43,12 @@ namespace Knihovna.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserVM userVM)
         {
+            
             if (ModelState.IsValid)
             {
                 AppUser appUser = new AppUser()
                 {
-                    UserName = userVM.UserName,
+                    UserName = userVM.Email,
                     Email = userVM.Email,
 
                 };
@@ -57,12 +65,22 @@ namespace Knihovna.Controllers
                 await _userManager.AddToRoleAsync(appUser, "Čtenář");
                 if ((result.Succeeded))
                 {
+                    LibraryUser libraryUser = new LibraryUser()
+                    {
+                        FirstName = userVM.FirstName,
+                        LastName = userVM.LastName,
+                        DateOfBirth = userVM.DateOfBirth,
+                        AppUser = appUser
+
+                    };
+                    await _libraryUserService.CreateAsync(libraryUser);
                     return RedirectToAction("Index");
                 }
                 else
                 {
                     Errors(result);
                 }
+             
             }
             return View(userVM);
         }
@@ -120,9 +138,19 @@ namespace Knihovna.Controllers
         //********* DELETE   ************
         //*******************************
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            AppUser appUser = await _userManager.FindByIdAsync(id);
+            string appUserId=string.Empty;
+            LibraryUser libraryUser = await _libraryUserService.GetByIdAsync(id);
+            if (libraryUser != null)
+            {
+				appUserId= await _libraryUserService.DeleteAsync(id);
+			}
+            else
+            {
+				ModelState.AddModelError("", "Uživatel nenalezen");
+			}
+            AppUser appUser = await _userManager.FindByIdAsync(appUserId);
             if (appUser != null)
             {
                 IdentityResult identityResult = await _userManager.DeleteAsync(appUser);
@@ -137,7 +165,7 @@ namespace Knihovna.Controllers
             {
                 ModelState.AddModelError("", "Uživatel nenalezen");
             }
-            return View("Index",_userManager.Users);
+            return RedirectToAction("Index");
         }
         //*******************************
         //********* ADD ERRORS   ************

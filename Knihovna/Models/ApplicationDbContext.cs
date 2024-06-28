@@ -12,5 +12,6 @@ namespace Knihovna.Models
 		public DbSet<Author> Authors { get; set; }
 		public DbSet<Employee> Employees { get; set; }
 		public DbSet<Reader> Readers { get; set; }
+		public DbSet<LibraryUser> LibraryUsers { get; set; }
 	}
 }

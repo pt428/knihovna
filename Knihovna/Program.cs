@@ -17,6 +17,7 @@ builder.Services.AddScoped<EmployeeService>();
 builder.Services.AddScoped<ReaderService>();
 builder.Services.AddScoped<BorrowedService>();
 builder.Services.AddScoped<ReservationService>();
+builder.Services.AddScoped<LibraryUserService>();
 builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 builder.Services.Configure<IdentityOptions>(opt =>
 {
