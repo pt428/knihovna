@@ -1,5 +1,7 @@
 ﻿using Knihovna.DTO;
+using Knihovna.Migrations;
 using Knihovna.Models;
+using Knihovna.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +21,8 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task CreateAsync(BookDto bookDto)
 		{
-			await _dbContext.Books.AddAsync(DtoToModel(bookDto));
+			Book book = DtoToModel(bookDto);
+			await _dbContext.Books.AddAsync(book);
 			await _dbContext.SaveChangesAsync();
 		}
 		//*******************************
@@ -27,7 +30,7 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task<IEnumerable<BookDto>> GetAllAsync()
 		{
-			var allBooks = await _dbContext.Books.Include(x => x.UserWhoBorrowed).ToListAsync();
+			var allBooks = await _dbContext.Books.ToListAsync();
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
@@ -80,7 +83,8 @@ namespace Knihovna.Services
 				Borrowed = book.Borrowed,
 				Reserved = book.Reserved,
 				Year = book.Year,
-				UserWhoBorrowedId = book.UserWhoBorrowed.Id ?? ""
+				UserWhoBorrowedId = book.UserWhoBorrowedId ,
+				UserWhoReservedId = book.UserWhoReservedId 
 			};
 		}
 		//*******************************
@@ -88,7 +92,7 @@ namespace Knihovna.Services
 		//*******************************
 		private Book DtoToModel(BookDto bookDto)
 		{
-
+			 
 			return new Book()
 			{
 				Id = bookDto.Id,
@@ -100,7 +104,8 @@ namespace Knihovna.Services
 				Year = bookDto.Year,
 				Reserved = bookDto.Reserved,
 				Borrowed = bookDto.Borrowed,
-				UserWhoBorrowed = _userManager.Users.FirstOrDefault(x => x.Id == bookDto.UserWhoBorrowedId.ToString()) ?? new AppUser()
+				UserWhoBorrowedId = bookDto.UserWhoBorrowedId ?? "",
+				UserWhoReservedId = bookDto.UserWhoReservedId ?? ""
 			};
 		}
 		//*******************************
@@ -110,7 +115,18 @@ namespace Knihovna.Services
 		{
 			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToReservation.Reserved = true;
-
+			bookToReservation.UserWhoReservedId= appUser.Id;
+			_dbContext.Update(bookToReservation);
+			await _dbContext.SaveChangesAsync();
+		}		
+		//*******************************
+		//********* RESERVATION   ************
+		//*******************************
+		public async Task ReservationCancelAsync(int id)
+		{
+			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			bookToReservation.Reserved = false;
+			bookToReservation.UserWhoReservedId ="";
 			_dbContext.Update(bookToReservation);
 			await _dbContext.SaveChangesAsync();
 		}
@@ -121,7 +137,18 @@ namespace Knihovna.Services
 		{
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = true;
-			bookToBorrow.UserWhoBorrowed = appUser;
+			bookToBorrow.UserWhoBorrowedId = appUser.Id;
+			_dbContext.Update(bookToBorrow);
+			await _dbContext.SaveChangesAsync();
+		}		
+		//*******************************
+		//********* BORROW CANCEL  ************
+		//*******************************
+		public async Task BorrowCancelAsync(int id, AppUser appUser)
+		{
+			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			bookToBorrow.Borrowed = false;
+			bookToBorrow.UserWhoBorrowedId = "";
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
 		}

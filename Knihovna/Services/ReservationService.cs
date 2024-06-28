@@ -1,5 +1,6 @@
 ﻿using Knihovna.DTO;
 using Knihovna.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Knihovna.Services
@@ -7,22 +8,34 @@ namespace Knihovna.Services
 	public class ReservationService
 	{
 		private ApplicationDbContext _dbContext;
-
-		public ReservationService(ApplicationDbContext dbContext)
+		private UserManager<AppUser> _userManager;
+		private RoleManager<IdentityRole> _roleManager;
+		public ReservationService(ApplicationDbContext dbContext,UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
 		{
 			_dbContext = dbContext;
+			_userManager = userManager;
+			_roleManager = roleManager;
 		}
 		//*******************************
 		//********* READ  ************
 		//*******************************
-		public async Task<IEnumerable<BookDto>> GetAllAsync()
+		public async Task<IEnumerable<BookDto>> GetAllAsync(AppUser appUser)
 		{
+			IdentityRole identityRole = await _roleManager.FindByNameAsync("Čtenář");
+			bool isCtenar = await _userManager.IsInRoleAsync(appUser, identityRole.Name);
 			var allBooks = await _dbContext.Books.Where(x => x.Reserved == true).ToListAsync();
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
+				if (isCtenar && appUser.Id == book.UserWhoReservedId)
+				{
 
-				bookDtos.Add(modelToDto(book));
+					bookDtos.Add(modelToDto(book));
+				}
+				else if(!isCtenar) 
+				{
+					bookDtos.Add(modelToDto(book));
+				}
 			}
 			return bookDtos;
 		}

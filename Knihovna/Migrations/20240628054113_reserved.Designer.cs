@@ -4,6 +4,7 @@ using Knihovna.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240628054113_reserved")]
+    partial class reserved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -156,12 +159,10 @@ namespace Knihovna.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserWhoBorrowedId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserWhoReservedId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Year")
                         .IsRequired()
@@ -172,6 +173,10 @@ namespace Knihovna.Migrations
                     b.HasIndex("ReaderId");
 
                     b.HasIndex("ReaderId1");
+
+                    b.HasIndex("UserWhoBorrowedId");
+
+                    b.HasIndex("UserWhoReservedId");
 
                     b.ToTable("Books");
                 });
@@ -366,6 +371,18 @@ namespace Knihovna.Migrations
                     b.HasOne("Knihovna.Models.Reader", null)
                         .WithMany("ReservedBooks")
                         .HasForeignKey("ReaderId1");
+
+                    b.HasOne("Knihovna.Models.AppUser", "UserWhoBorrowed")
+                        .WithMany()
+                        .HasForeignKey("UserWhoBorrowedId");
+
+                    b.HasOne("Knihovna.Models.AppUser", "UserWhoReserved")
+                        .WithMany()
+                        .HasForeignKey("UserWhoReservedId");
+
+                    b.Navigation("UserWhoBorrowed");
+
+                    b.Navigation("UserWhoReserved");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

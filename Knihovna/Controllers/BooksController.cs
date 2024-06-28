@@ -87,7 +87,22 @@ namespace Knihovna.Controllers
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
             await _bookService.ReservationAsync(id,user);
 			return RedirectToAction("Index");
-		}		
+		}
+		//******************************************
+		//********* REZERVATION CANCEL  ************
+		//******************************************
+		[HttpPost]
+		public async Task<IActionResult> RezervationCancelAsync(int id)
+		{
+			BookDto bookToRezervationCancel = await _bookService.GetByIdAsync(id);
+			if (bookToRezervationCancel == null)
+			{
+				return View("NotFound");
+			}
+		 
+			await _bookService.ReservationCancelAsync(id);
+			return RedirectToAction("Index");
+		}
 		//*******************************
 		//********* BORROW   ************
 		//*******************************
@@ -101,6 +116,22 @@ namespace Knihovna.Controllers
 			}
 			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
 			await _bookService.BorrowAsync(id, user);
+	 
+			return RedirectToAction("Index");
+		}		
+		//*******************************
+		//********* BORROW CANCEL  ************
+		//*******************************
+		[HttpPost]
+		public async Task<IActionResult> BorrowCancelAsync(int id)
+		{
+			BookDto bookToBorrowCancel= await _bookService.GetByIdAsync(id);
+			if(bookToBorrowCancel == null)
+			{
+				return View("NotFound");
+			}
+			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+			await _bookService.BorrowCancelAsync(id, user);
 	 
 			return RedirectToAction("Index");
 		}
