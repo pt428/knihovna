@@ -14,6 +14,8 @@ namespace Knihovna.DTO
         public bool Reserved { get; set; }
         public bool Borrowed { get; set; }
         public string UserWhoBorrowedId { get; set; }
-        public string UserWhoReservedId { get; set; }
+        public string UserWhoReservedId { get; set; }        
+        public string UserWhoBorrowedName { get; set; }
+        public string UserWhoReservedName { get; set; }
     }
 }

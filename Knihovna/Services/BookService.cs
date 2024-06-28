@@ -34,8 +34,21 @@ namespace Knihovna.Services
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
+				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
+				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoReservedId);
+				BookDto bookDto = modelToDto(book);
+				bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null? 
+					UserWhoBorrowed.FirstName + " " + 
+					UserWhoBorrowed.LastName + "(" + 
+					UserWhoBorrowed.DateOfBirth.ToString("dd.MM.yyyy")+ "), email: " +
+                    UserWhoBorrowed.AppUser.Email : "";
+                bookDto.UserWhoReservedName = UserWhoReserved is not null ? 
+					UserWhoReserved.FirstName + " " + 
+					UserWhoReserved.LastName + "(" + 
+					UserWhoReserved.DateOfBirth.ToString("dd.MM.yyyy")+"), email: " +
+					UserWhoReserved.AppUser.Email: "";
 
-				bookDtos.Add(modelToDto(book));
+				bookDtos.Add(bookDto);
 			}
 			return bookDtos;
 		}
@@ -84,7 +97,9 @@ namespace Knihovna.Services
 				Reserved = book.Reserved,
 				Year = book.Year,
 				UserWhoBorrowedId = book.UserWhoBorrowedId ,
-				UserWhoReservedId = book.UserWhoReservedId 
+				UserWhoReservedId = book.UserWhoReservedId ,
+				UserWhoBorrowedName ="",
+				UserWhoReservedName=""
 			};
 		}
 		//*******************************

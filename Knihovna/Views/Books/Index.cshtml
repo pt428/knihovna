@@ -48,7 +48,8 @@
 								<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-danger btn-sm">Zrušit rezervaci</button>
 							</form>
 							<span>Rezervováno</span><br />
-							<span>@book.UserWhoReservedId</span>
+							<span>@book.UserWhoReservedId</span><br />
+							<span>@book.UserWhoReservedName</span> 
 						</td>
 						}
 						else
@@ -67,7 +68,8 @@
 								<button type="submit" asp-route-id="@book.Id" asp-action="BorrowCancel" class="btn btn-danger btn-sm">Vrátit knihu</button>
 							</form>
 							<span>Půjčeno</span><br />
-							<span>@book.UserWhoBorrowedId</span>
+							<span>@book.UserWhoBorrowedId</span><br />
+							<span>@book.UserWhoBorrowedName</span>
 						</td>
 						}
 						else

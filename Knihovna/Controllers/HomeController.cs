@@ -22,7 +22,7 @@ namespace Knihovna.Controllers
 		public async Task< IActionResult> Index()
 		{
 			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-			string message = "Hello" + user.UserName;
+			string message =   user.UserName;
 
 			return View("Index",message);
 		}

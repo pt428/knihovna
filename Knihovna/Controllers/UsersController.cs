@@ -105,6 +105,7 @@ namespace Knihovna.Controllers
             AppUser appUser = await _userManager.FindByIdAsync(id);
             if (appUser != null)
             {
+                appUser.UserName = email;
                 appUser.Email = email;
                 IdentityResult validPass=null;
                 validPass = await _passwordValidator.ValidateAsync(_userManager,appUser,password);
