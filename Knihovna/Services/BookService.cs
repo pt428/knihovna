@@ -31,7 +31,7 @@ namespace Knihovna.Services
 		//*******************************
 		//********* READ  ************
 		//*******************************
-		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs)
+		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs )
 		{
 
 			//var allBooks = await _dbContext.Books.ToListAsync();
@@ -56,8 +56,10 @@ namespace Knihovna.Services
 			{
 				allBooks = allBooks.Where(b => b.ISBN == bookParametrs.ISBN);
 			}
-
+ 
 			var bookDtos = new List<BookDto>();
+		 
+ 
 			foreach (var book in allBooks)
 			{
 				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
@@ -67,8 +69,10 @@ namespace Knihovna.Services
 				bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
 				bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
 				bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : "";
+		 
+					bookDtos.Add(bookDto);
+				 
 
-				bookDtos.Add(bookDto);
 			}
 			return bookDtos;
 		}
@@ -173,24 +177,27 @@ namespace Knihovna.Services
 		//*******************************
 		//********* BORROW   ************
 		//*******************************
-		public async Task BorrowAsync(int id, AppUser appUser)
+		public async Task BorrowAsync(int id )
 		{
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = true;
+			bookToBorrow.UserWhoBorrowedId=bookToBorrow.UserWhoReservedId;
+			bookToBorrow.Reserved=false;
+			bookToBorrow.UserWhoReservedId = "";
 			bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToShortDateString();
-			bookToBorrow.UserWhoBorrowedId = appUser.Id;
+		 
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
 		}
 		//*******************************
 		//********* BORROW CANCEL  ************
 		//*******************************
-		public async Task BorrowCancelAsync(int id, AppUser appUser)
+		public async Task BorrowCancelAsync(int id )
 		{
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = false;
 			bookToBorrow.UserWhoBorrowedId = "";
-			bookToBorrow.DateOfReturn = "available";
+			bookToBorrow.DateOfReturn = "";
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
 		}

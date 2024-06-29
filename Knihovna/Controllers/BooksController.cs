@@ -21,7 +21,8 @@ namespace Knihovna.Controllers
 		//*******************************
 		public async Task<IActionResult> Index([FromQuery] BookParametrs bookParametrs)
 		{
-			var allBooks = await _bookService.GetAllAsync(bookParametrs);
+			 
+			var allBooks = await _bookService.GetAllAsync(bookParametrs  );
 			return View(allBooks);
 		}
 		//*******************************
@@ -117,7 +118,7 @@ namespace Knihovna.Controllers
 				return View("NotFound");
 			}
 			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-			await _bookService.BorrowAsync(id, user);
+			await _bookService.BorrowAsync(id);
 	 
 			return RedirectToAction("Index");
 		}		
@@ -133,7 +134,7 @@ namespace Knihovna.Controllers
 				return View("NotFound");
 			}
 			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-			await _bookService.BorrowCancelAsync(id, user);
+			await _bookService.BorrowCancelAsync(id);
 	 
 			return RedirectToAction("Index");
 		}

@@ -1,16 +1,27 @@
 ﻿    @using Knihovna.DTO
-    @model IEnumerable<BookDto>
+    @model IEnumerable< BookDto>
 <!-- Main Container -->
 <div class="container mt-5">
 	<!-- Book List -->
-	<h2>Seznam vypůjčených knih</h2>
- 
-	<table class="table table-bordered table-striped ">
-		@foreach (var book in Model)
-		{
+	<h2>Seznam půjčených knih</h2> 
+	<hr />	 
+	@foreach (var book in Model)
+	{
+		<table class="table table-secondary table-bordered table-striped table-hover">
 			<thead>
 				<tr>
-					<th>Titul</th>
+					@if (book.Borrowed && Convert.ToDateTime(book.DateOfReturn) < DateTime.Now)
+					{
+						<td colspan="5" style="background-color:red;"></td>
+					}
+					else
+					{
+						<td colspan="5" style="background-color: lightcyan;"></td>
+					}
+
+				</tr>
+				<tr>
+					<th>Titul	</th>
 					<th>Autor</th>
 					<th>Žánr</th>
 					<th>Rok</th>
@@ -34,48 +45,97 @@
 					<td colspan="5">@book.Description</td>
 				</tr>
 				<tr>
-					<td colspan="5">
-						@if (book.Reserved)
-						{
-
-							<span>Rezervováno</span>
-						}
-						else
-						{
-							<form method="post">
-								<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-danger btn-sm">Rezervovat</button>
-							</form>
-
-						}
-						@if (book.Borrowed)
-						{
-
-							<span>Půjčeno</span>
-						}
-						else
-						{
-							<form method="post">
-								<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-danger btn-sm">Půjčit</button>
-							</form>
+					<td colspan="5" class="table-primary">
+						<div class="d-flex flex-wrap justify-content-between ">
+							<div class="d-flex  ">
+								<div style="width:150px;">
+									@if (book.Reserved)
+									{
+										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										{
+											<form method="post" class="form-inline">
+												<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
+											</form><br />
+								
+										}
+											<span>@book.UserWhoReservedName</span><br />
+											<span>@book.UserWhoReservedEmail</span><br />
+										<span style="color: red;"> Rezervováno</span>
 
 
-						}
+									}
+									else
+									{
 
-						<a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
+										<form method="post" class="form-inline">
+											<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-warning w-100">Rezervovat knihu</button>
+										</form>
+									}
+								</div>
 
-						<form method="post">
-							<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-danger btn-sm">Smazat</button>
-						</form>
+								<div class="ms-1" style="width:150px;">
+									@if (book.Borrowed)
+									{
+										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										{
 
+											<form method="post" class="form-inline">
+												<button type="submit" asp-route-id="@book.Id" asp-action="BorrowCancel" class="btn btn-outline-danger  w-100">Vrátit knihu</button>
+											</form>
+										}
+										<span>@book.UserWhoBorrowedName</span>
+
+										<br />
+										<span>@book.UserWhoBorrowedEmail</span>	<br />
+										@if (Convert.ToDateTime(book.DateOfReturn) > DateTime.Now)
+										{
+											<span style="color: red;"> Půjčeno do </span>
+											<span>@book.DateOfReturn</span>
+											<br />
+										}
+										else
+										{
+											<span style="color: red;"> Půjčeno do </span>
+											<span>@book.DateOfReturn</span>
+											<span style="color: red;"> UPOMÍNKA !!!</span>	<br />
+										}
+
+
+									}
+									else
+									{
+										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										{
+											@if (book.Reserved)
+											{
+												<form method="post" class="form-inline">
+													<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
+												</form>
+											}
+
+										}
+									}
+								</div>
+							</div>
+							@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+							{
+
+								<div class="d-flex justify-content-end ">
+									<div>
+										<a class="btn btn-outline-primary w-100" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
+									</div>
+									<div>
+										<form method="post" class="form-inline">
+											<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-outline-danger  w-100">Smazat</button>
+										</form>
+									</div>
+								</div>
+							}
+						</div>
 					</td>
-				<tr>
-					<td colspan="5"><hr /></td>
-				</tr>
 				</tr>
 			</tbody>
-		}
+		</table>
+	}
 
-	</table>
 
-
-</div>

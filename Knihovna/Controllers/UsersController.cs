@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Knihovna.Controllers
 {
-    [Authorize(Roles ="Admin")]
+   
     public class UsersController : Controller
     {
         private UserManager<AppUser> _userManager;
@@ -25,10 +25,11 @@ namespace Knihovna.Controllers
             _libraryUserService = libraryUserService;
             
         }
-        //*******************************
-        //********* INDEX   ************
-        //*******************************
-        public async Task< IActionResult> Index()
+		//*******************************
+		//********* INDEX   ************
+		//*******************************
+		[Authorize(Roles = "Admin")]
+		public async Task< IActionResult> Index()
         {
             var allUsers = await _libraryUserService.GetAllAsync();
 
@@ -86,10 +87,11 @@ namespace Knihovna.Controllers
             }
             return View(userVM);
         }
-        //*******************************
-        //********* UPDATE START   ************
-        //*******************************
-        public async Task<IActionResult> Edit(string id)
+		[Authorize(Roles = "Admin")]
+		//*******************************
+		//********* UPDATE START   ************
+		//*******************************
+		public async Task<IActionResult> Edit(string id)
         {
             AppUser appUserToEdit = await _userManager.FindByIdAsync(id);
             if (appUserToEdit == null)
@@ -98,10 +100,11 @@ namespace Knihovna.Controllers
             }
             return View(appUserToEdit);
         }
-        //*******************************
-        //********* UPDATE END   ************
-        //*******************************
-        [HttpPost]
+		//*******************************
+		//********* UPDATE END   ************
+		//*******************************
+		[Authorize(Roles = "Admin")]
+		[HttpPost]
         public async Task<IActionResult> EditAsync(string id, string email, string password)
         {
             AppUser appUser = await _userManager.FindByIdAsync(id);
@@ -137,10 +140,11 @@ namespace Knihovna.Controllers
             }
             return View(appUser);
         }
-        //*******************************
-        //********* DELETE   ************
-        //*******************************
-        [HttpPost]
+		//*******************************
+		//********* DELETE   ************
+		//*******************************
+		[Authorize(Roles = "Admin")]
+		[HttpPost]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             string appUserId=string.Empty;

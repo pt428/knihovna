@@ -8,8 +8,7 @@
 		public string ISBN { get; set; }
 		public string Genre { get; set; }
 		public string Year { get; set; }
-		//public bool Reserved { get; set; }
-		//public bool Borrowed { get; set; }
+ 
 
 
 	}

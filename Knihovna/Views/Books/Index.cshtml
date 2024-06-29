@@ -45,7 +45,7 @@
 	<hr />
 	@foreach (var book in Model)
 	{
-		<table class="table table-secondary table-bordered table-striped table-hover">
+		<table class="table table-secondary table-bordered table-striped">
 			<thead>
 				<tr>
 					@if (book.Borrowed && Convert.ToDateTime(book.DateOfReturn) < DateTime.Now)
@@ -83,7 +83,7 @@
 					<td colspan="5">@book.Description</td>
 				</tr>
 				<tr>
-					<td colspan="5">
+					<td colspan="5" class="table-primary">
 						<div class="d-flex flex-wrap justify-content-between ">
 							<div class="d-flex  ">
 								<div style="width:150px;">
@@ -149,10 +149,16 @@
 									}
 									else
 									{
+										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										{
+											@if (book.Reserved)
+											{
+												<form method="post" class="form-inline">
+													<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
+												</form>
+											}
 
-										<form method="post" class="form-inline">
-											<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
-										</form>
+										}
 									}
 								</div>
 							</div>
