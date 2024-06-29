@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "ROLES";
 }
+<div class="form-group p-3" style="background-color: lightcyan;">
+    <h3 class="text-center">Seznam rolí</h3>
+    <a asp-action="Create" class="btn btn-success w-100">Vytvořit novou roli</a>
 
-<h1 class="bg-info text-white">All Roles</h1>
-<a asp-action="Create" class="btn btn-secondary">Create a Role</a>
-
-<table class="table table-sm table-bordered">
+    <table class="table table-secondary table-bordered table-striped">
     <tr>
         <th>Name</th>
         <th>Update</th>

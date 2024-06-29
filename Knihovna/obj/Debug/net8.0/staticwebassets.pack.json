@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Knihovna.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\Images\\knihovna.jpg",
+      "PackagePath": "staticwebassets\\Images\\knihovna.jpg"
+    },
+    {
       "Id": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

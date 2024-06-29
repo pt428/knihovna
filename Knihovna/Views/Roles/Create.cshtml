@@ -1,15 +1,16 @@
 ﻿@model string
+<div class="form-group p-3" style="background-color: lightcyan;">
+	<h1 class="text-center">Vytvořit novou roli</h1>
+ 
+	<div asp-validation-summary="All" class="text-danger"></div>
 
-<h1>Create a Role</h1>
-
-
-<a asp-action="Index" class="btn btn-secondary">Back</a>
-<div asp-validation-summary="All" class="text-danger"></div>
-
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input name="name" class="form-control" required />
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-</form> 
+	<form asp-action="Create" method="post">
+		<div class="form-group">
+			<label for="name" class="form-label">Jméno role</label>
+			<input name="name" class="form-control" required />
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-success w-100">Vytvořit</button>
+		</div>
+	</form>
+</div>

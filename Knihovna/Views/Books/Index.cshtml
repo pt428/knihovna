@@ -2,19 +2,11 @@
     @model IEnumerable< BookDto>
 <!-- Main Container -->
 <div class="container mt-5">
+	<div style="background-color: lightcyan;">
 	<!-- Book List -->
-	<h2>Seznam knih</h2>
-	@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
-	{
-		<hr />
-		<div>
-			<a asp-action="Create" class="btn btn-outline-success w-100 ">Přidat knihu</a>
-		</div>
-	}
-	<hr />
+		<h1 class="text-center">Seznam knih</h1> 
 	<div class="container mt-5">
-		<h4>Vyhledávání knih</h4>
-		<form method="get">
+ 		<form method="get">
 			<div class="d-flex flex-row align-self-center mb-3">
 				<div class="form-group mx-sm-3 mb-2">
 					<label for="Title">Titul</label>
@@ -42,7 +34,15 @@
 			</div>
 		</form>
 	</div>
+		@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+		{
+			<hr />
+			<div>
+				<a asp-action="Create" class="btn btn-success w-100 ">Přidat knihu</a>
+			</div>
+		}
 	<hr />
+	</div>
 	@foreach (var book in Model)
 	{
 		<table class="table table-secondary table-bordered table-striped">

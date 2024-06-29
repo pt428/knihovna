@@ -1,7 +1,8 @@
 ﻿@using Knihovna.DTO
 @model BookDto
-<div>
-	<h4>Vložit novou knihu</h4>
+<div class="form-group p-3" style="background-color: lightcyan;">
+	<h4 class ="text-center">Editovat knihu</h4>
+	
 	<form method="post" asp-action="Update">
 		<input asp-for="Id" type="text" hidden />
 		<input asp-for="Borrowed" type="text" hidden />
@@ -9,31 +10,33 @@
 		<input asp-for="UserWhoBorrowedId" type="text" hidden />
 		<input asp-for="UserWhoReservedId" type="text" hidden />
 		<div class="form-group">
-		<div class="form-group">
-			<label asp-for="Title">Titul</label>
-			<input type="text" asp-for="Title" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label asp-for="ISBN">ISBN</label>
-			<input type="text" asp-for="ISBN" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label asp-for="Genre">Žánr</label>
-			<input type="text" asp-for="Genre" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label asp-for="AuthorName">Autor</label>
-			<input type="text" asp-for="AuthorName" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label asp-for="Year">Rok</label>
-			<input type="text" asp-for="Year" class="form-control" />
-		</div>
-		<div class="form-group">
-			<label asp-for="Description">Popis</label>
-			<textarea rows="4" cols="50" class="form-control" asp-for="Description"></textarea>		 
-		</div>
-
-		<input type="submit" class="btn btn-success" value="Vložit" />
+			<div class="form-group">
+				<label asp-for="Title" class="form-label">Titul</label>
+				<input type="text" asp-for="Title" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label asp-for="ISBN" class="form-label">ISBN</label>
+				<input type="text" asp-for="ISBN" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label asp-for="Genre" class="form-label">Žánr</label>
+				<input type="text" asp-for="Genre" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label asp-for="AuthorName" class="form-label">Autor</label>
+				<input type="text" asp-for="AuthorName" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label asp-for="Year" class="form-label">Rok</label>
+				<input type="text" asp-for="Year" class="form-control" required />
+			</div>
+			<div class="form-group">
+				<label asp-for="Description" class="form-label">Popis</label>
+				<textarea rows="4" cols="50" class="form-control" asp-for="Description" required></textarea>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-success w-100" value="Vložit" />
+			</div>
 	</form>
-</div>
+	</div>
+ 

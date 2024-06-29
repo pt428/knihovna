@@ -77,7 +77,7 @@ namespace Knihovna.Controllers
 
                     };
                     await _libraryUserService.CreateAsync(libraryUser);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

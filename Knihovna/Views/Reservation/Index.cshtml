@@ -3,8 +3,11 @@
 <!-- Main Container -->
 <div class="container mt-5">
 	<!-- Book List -->
-	<h2>Seznam rezervovaných knih</h2> 
-	<hr />	 
+	<div style="background-color: lightcyan;">
+
+		<h1 class="text-center">Seznam rezervovaných knih</h1>
+		<hr />	 
+	</div>
 	@foreach (var book in Model)
 	{
 		<table class="table table-secondary table-bordered table-striped table-hover">
@@ -120,20 +123,7 @@
 									}
 								</div>
 							</div>
-							@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
-							{
-
-								<div class="d-flex justify-content-end ">
-									<div>
-										<a class="btn btn-outline-primary w-100" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
-									</div>
-									<div>
-										<form method="post" class="form-inline">
-											<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-outline-danger  w-100">Smazat</button>
-										</form>
-									</div>
-								</div>
-							}
+							 
 						</div>
 					</td>
 				</tr>

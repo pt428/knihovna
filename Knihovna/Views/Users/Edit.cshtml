@@ -1,28 +1,32 @@
 ﻿@using Knihovna.ViewModels
 @model AppUser
 @{
-    ViewData["Title"] = "Edit USER";
+	ViewData["Title"] = "Edit USER";
 }
-<h1>Update User</h1>
-<a asp-action="Index" class="btn btn-secondary">Back</a>
-<div asp-validation-summary="All" class="text-danger"></div>
+<div class="form-group p-3" style="background-color: lightcyan;">
+	<h1>Editace uživatele</h1>
+ 
+	<div asp-validation-summary="All" class="text-danger"></div>
 
-<form asp-action="Edit" method="post">
-    <div class="form-group">
-        <label asp-for="Id"></label>
-        <input asp-for="Id" class="form-control" disabled />
-    </div>
-    <div class="form-group">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" class="form-control" disabled />
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" required />
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input name="password" class="form-control" required/>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+	<form asp-action="Edit" method="post">
+		<div class="form-group">
+			<label asp-for="Id" class="form-label"></label>
+			<input asp-for="Id" class="form-control" disabled />
+		</div>
+		<div class="form-group">
+			<label asp-for="UserName" class="form-label"></label>
+			<input asp-for="UserName" class="form-control" disabled />
+		</div>
+		<div class="form-group">
+			<label asp-for="Email" class="form-label"></label>
+			<input asp-for="Email" class="form-control" required />
+		</div>
+		<div class="form-group">
+			<label for="password" class="form-label">Password</label>
+			<input name="password" class="form-control" required />
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-success w-100">Uložit</button>
+		</div>
+	</form>
+</div>
