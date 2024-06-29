@@ -13,8 +13,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 		builder.Configuration["ConnectionStrings:LibraryDbConnection"]);
 });
 builder.Services.AddScoped<BookService>();
-builder.Services.AddScoped<EmployeeService>();
-builder.Services.AddScoped<ReaderService>();
+//builder.Services.AddScoped<EmployeeService>();
+//builder.Services.AddScoped<ReaderService>();
 builder.Services.AddScoped<BorrowedService>();
 builder.Services.AddScoped<ReservationService>();
 builder.Services.AddScoped<LibraryUserService>();

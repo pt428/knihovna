@@ -4,6 +4,8 @@ using Knihovna.Models;
 using Knihovna.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 
 namespace Knihovna.Services
 {
@@ -21,33 +23,50 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task CreateAsync(BookDto bookDto)
 		{
- 
+
 			Book book = DtoToModel(bookDto);
-			await _dbContext.Books.AddAsync(book);
+			EntityEntry e = await _dbContext.Books.AddAsync(book);
 			await _dbContext.SaveChangesAsync();
 		}
 		//*******************************
 		//********* READ  ************
 		//*******************************
-		public async Task<IEnumerable<BookDto>> GetAllAsync()
+		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs)
 		{
-			var allBooks = await _dbContext.Books.ToListAsync();
+
+			//var allBooks = await _dbContext.Books.ToListAsync();
+			IQueryable<Book> allBooks = _dbContext.Books;
+			if (bookParametrs.AuthorName != null)
+			{
+				allBooks = allBooks.Where(b => b.AuthorName == bookParametrs.AuthorName);
+			}
+			if (bookParametrs.Title != null)
+			{
+				allBooks = allBooks.Where(b => b.Title == bookParametrs.Title);
+			}
+			if (bookParametrs.Genre != null)
+			{
+				allBooks = allBooks.Where(b => b.Genre == bookParametrs.Genre);
+			}
+			if (bookParametrs.Year != null)
+			{
+				allBooks = allBooks.Where(b => b.Year == bookParametrs.Year);
+			}
+			if (bookParametrs.ISBN != null)
+			{
+				allBooks = allBooks.Where(b => b.ISBN == bookParametrs.ISBN);
+			}
+
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
-				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
+				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
 				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoReservedId);
 				BookDto bookDto = modelToDto(book);
-				bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null? 
-					UserWhoBorrowed.FirstName + " " + 
-					UserWhoBorrowed.LastName + "(" + 
-					UserWhoBorrowed.DateOfBirth.ToString("dd.MM.yyyy")+ "), email: " +
-                    UserWhoBorrowed.AppUser.Email : "";
-                bookDto.UserWhoReservedName = UserWhoReserved is not null ? 
-					UserWhoReserved.FirstName + " " + 
-					UserWhoReserved.LastName + "(" + 
-					UserWhoReserved.DateOfBirth.ToString("dd.MM.yyyy")+"), email: " +
-					UserWhoReserved.AppUser.Email: "";
+				bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null ? UserWhoBorrowed.FirstName + " " + UserWhoBorrowed.LastName : "";
+				bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
+				bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
+				bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : "";
 
 				bookDtos.Add(bookDto);
 			}
@@ -98,10 +117,12 @@ namespace Knihovna.Services
 				Reserved = book.Reserved,
 				Year = book.Year,
 				DateOfReturn = book.DateOfReturn,
-				UserWhoBorrowedId = book.UserWhoBorrowedId ,
-				UserWhoReservedId = book.UserWhoReservedId ,
-				UserWhoBorrowedName ="",
-				UserWhoReservedName=""
+				UserWhoBorrowedId = book.UserWhoBorrowedId,
+				UserWhoReservedId = book.UserWhoReservedId,
+				UserWhoBorrowedName = "",
+				UserWhoReservedName = "",
+				UserWhoBorrowedEmail = "",
+				UserWhoReservedEmail = ""
 			};
 		}
 		//*******************************
@@ -109,7 +130,7 @@ namespace Knihovna.Services
 		//*******************************
 		private Book DtoToModel(BookDto bookDto)
 		{
-			 
+
 			return new Book()
 			{
 				Id = bookDto.Id,
@@ -119,11 +140,12 @@ namespace Knihovna.Services
 				Genre = bookDto.Genre,
 				Description = bookDto.Description,
 				Year = bookDto.Year,
-				DateOfReturn= bookDto.DateOfReturn ?? "",
+				DateOfReturn = bookDto.DateOfReturn ?? "",
 				Reserved = bookDto.Reserved,
 				Borrowed = bookDto.Borrowed,
 				UserWhoBorrowedId = bookDto.UserWhoBorrowedId ?? "",
-				UserWhoReservedId = bookDto.UserWhoReservedId ?? ""
+				UserWhoReservedId = bookDto.UserWhoReservedId ?? "",
+
 			};
 		}
 		//*******************************
@@ -133,10 +155,10 @@ namespace Knihovna.Services
 		{
 			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToReservation.Reserved = true;
-			bookToReservation.UserWhoReservedId= appUser.Id;
+			bookToReservation.UserWhoReservedId = appUser.Id;
 			_dbContext.Update(bookToReservation);
 			await _dbContext.SaveChangesAsync();
-		}		
+		}
 		//*******************************
 		//********* RESERVATION   ************
 		//*******************************
@@ -144,7 +166,7 @@ namespace Knihovna.Services
 		{
 			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToReservation.Reserved = false;
-			bookToReservation.UserWhoReservedId ="";
+			bookToReservation.UserWhoReservedId = "";
 			_dbContext.Update(bookToReservation);
 			await _dbContext.SaveChangesAsync();
 		}
@@ -155,11 +177,11 @@ namespace Knihovna.Services
 		{
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = true;
-			bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToString();
+			bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToShortDateString();
 			bookToBorrow.UserWhoBorrowedId = appUser.Id;
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
-		}		
+		}
 		//*******************************
 		//********* BORROW CANCEL  ************
 		//*******************************

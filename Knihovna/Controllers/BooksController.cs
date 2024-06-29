@@ -17,9 +17,9 @@ namespace Knihovna.Controllers
 		//*******************************
 		//********* INDEX   ************
 		//*******************************
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index([FromQuery] BookParametrs bookParametrs)
 		{
-			var allBooks = await _bookService.GetAllAsync();
+			var allBooks = await _bookService.GetAllAsync(bookParametrs);
 			return View(allBooks);
 		}
 		//*******************************
