@@ -14,7 +14,7 @@
 		public bool Borrowed { get; set; }
 		public string UserWhoBorrowedId { get; set; }
 		public string UserWhoReservedId { get; set; }
-
+		public string DateOfReturn { get; set; } 
 
 	}
 }

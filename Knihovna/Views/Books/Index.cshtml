@@ -8,12 +8,20 @@
 	<div>
 		<a asp-action="Create" class="btn btn-success">Přidat knihu</a>
 	</div>
-	<table class="table table-bordered table-striped ">
 		@foreach (var book in Model)
 		{
+	<table class="table table-bordered table-striped ">
 			<thead>
 				<tr>
-					<td colspan="5" style="background-color: #FFADAD;"></td>
+					@if (book.Borrowed && Convert.ToDateTime(book.DateOfReturn) < DateTime.Now)
+					{
+						<td colspan="5" style="background-color:red;"></td>
+					}
+					else
+					{
+						<td colspan="5" style="background-color: lightcyan;"></td>
+					}
+
 				</tr>
 				<tr>
 					<th>Titul</th>
@@ -43,13 +51,13 @@
 					<td>
 						@if (book.Reserved)
 						{
-						<td>	
+						<td>
 							<form method="post" class="form-inline">
 								<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-danger btn-sm">Zrušit rezervaci</button>
 							</form>
 							<span>Rezervováno</span><br />
 							<span>@book.UserWhoReservedId</span><br />
-							<span>@book.UserWhoReservedName</span> 
+							<span>@book.UserWhoReservedName</span>
 						</td>
 						}
 						else
@@ -67,7 +75,20 @@
 							<form method="post" class="form-inline">
 								<button type="submit" asp-route-id="@book.Id" asp-action="BorrowCancel" class="btn btn-danger btn-sm">Vrátit knihu</button>
 							</form>
-							<span>Půjčeno</span><br />
+								@if (Convert.ToDateTime(book.DateOfReturn) > DateTime.Now)
+								{
+								<span>Půjčeno do </span>
+								<span>@book.DateOfReturn</span>
+								<br />
+								}
+								else
+								{
+								<span>Půjčeno do </span>
+								<span>@book.DateOfReturn</span>
+								<span style="color: red;"> UPOMÍNKA !!!</span>
+								<br />
+								}
+
 							<span>@book.UserWhoBorrowedId</span><br />
 							<span>@book.UserWhoBorrowedName</span>
 						</td>
@@ -89,6 +110,6 @@
 					</td>
 				</tr>
 			</tbody>
-		}
 	</table>
+		}
 

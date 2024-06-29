@@ -21,6 +21,7 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task CreateAsync(BookDto bookDto)
 		{
+ 
 			Book book = DtoToModel(bookDto);
 			await _dbContext.Books.AddAsync(book);
 			await _dbContext.SaveChangesAsync();
@@ -96,6 +97,7 @@ namespace Knihovna.Services
 				Borrowed = book.Borrowed,
 				Reserved = book.Reserved,
 				Year = book.Year,
+				DateOfReturn = book.DateOfReturn,
 				UserWhoBorrowedId = book.UserWhoBorrowedId ,
 				UserWhoReservedId = book.UserWhoReservedId ,
 				UserWhoBorrowedName ="",
@@ -117,6 +119,7 @@ namespace Knihovna.Services
 				Genre = bookDto.Genre,
 				Description = bookDto.Description,
 				Year = bookDto.Year,
+				DateOfReturn= bookDto.DateOfReturn ?? "",
 				Reserved = bookDto.Reserved,
 				Borrowed = bookDto.Borrowed,
 				UserWhoBorrowedId = bookDto.UserWhoBorrowedId ?? "",
@@ -152,6 +155,7 @@ namespace Knihovna.Services
 		{
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = true;
+			bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToString();
 			bookToBorrow.UserWhoBorrowedId = appUser.Id;
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
@@ -164,6 +168,7 @@ namespace Knihovna.Services
 			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			bookToBorrow.Borrowed = false;
 			bookToBorrow.UserWhoBorrowedId = "";
+			bookToBorrow.DateOfReturn = "available";
 			_dbContext.Update(bookToBorrow);
 			await _dbContext.SaveChangesAsync();
 		}

@@ -21,21 +21,22 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task<IEnumerable<BookDto>> GetAllAsync(AppUser appUser)
 		{
-			IdentityRole identityRole = await _roleManager.FindByNameAsync("Čtenář");
-			bool isCtenar = await _userManager.IsInRoleAsync(appUser, identityRole.Name);
-			var allBooks = await _dbContext.Books.Where(x=>x.Borrowed==true).ToListAsync();
+		 
+            var roles = await _userManager.GetRolesAsync(appUser);
+            string roleNames = string.Join(", ", roles);
+            var allBooks = await _dbContext.Books.Where(x=>x.Borrowed==true).ToListAsync();
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
-				if (isCtenar && appUser.Id == book.UserWhoBorrowedId)
-				{
-					bookDtos.Add(modelToDto(book));
-				}
-				else if (!isCtenar)
-				{
-					bookDtos.Add(modelToDto(book));
-				}
-			}
+                if (roleNames.Contains("Admin") || roleNames.Contains("Admin"))
+                {
+                    bookDtos.Add(modelToDto(book));
+                }
+                else if (appUser.Id == book.UserWhoBorrowedId)
+                {
+                    bookDtos.Add(modelToDto(book));
+                }
+            }
 			 
 			return bookDtos;
 		}

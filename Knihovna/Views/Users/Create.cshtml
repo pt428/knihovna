@@ -15,15 +15,15 @@
     <input asp-for="UserName" value="-" class="form-control" hidden / />
     <div class="form-group">
         <label asp-for="FirstName">Jméno</label>
-        <input type="text" asp-for="FirstName" class="form-control" />
+        <input type="text" asp-for="FirstName" class="form-control" required />
     </div>
     <div class="form-group">
         <label asp-for="LastName">Příjmení</label>
-        <input type="text" asp-for="LastName" class="form-control" />
+        <input type="text" asp-for="LastName" class="form-control" required />
     </div>
     <div class="form-group">
         <label asp-for="DateOfBirth">Datum narození</label>
-        <input type="date" asp-for="DateOfBirth" class="form-control" />
+        <input type="date" asp-for="DateOfBirth" class="form-control" required />
     </div>
 @*     <div class="form-group">
         <label asp-for="UserName"></label>
@@ -31,11 +31,11 @@
     </div> *@
     <div class="form-group">
         <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
+        <input asp-for="Email" class="form-control" required  />
     </div>
     <div class="form-group">
         <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" />
+        <input asp-for="Password" class="form-control" required />
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form> 
