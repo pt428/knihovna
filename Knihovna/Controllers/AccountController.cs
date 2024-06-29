@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore.Internal;
 namespace Knihovna.Controllers
 {
     [Authorize]
-    public class AuthenticateController : Controller
+    public class AccountController : Controller
     {
         UserManager<AppUser> _userManager;
         SignInManager<AppUser> _signInManager;
 
-        public AuthenticateController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -25,6 +25,11 @@ namespace Knihovna.Controllers
             LoginVM loginVm = new LoginVM();
             loginVm.ReturnUrl = returnUrl;
             return View(loginVm);
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
+
         }
 
         [HttpPost]

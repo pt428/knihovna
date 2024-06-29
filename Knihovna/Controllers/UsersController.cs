@@ -1,12 +1,14 @@
 ﻿using Knihovna.Models;
 using Knihovna.Services;
 using Knihovna.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Knihovna.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class UsersController : Controller
     {
         private UserManager<AppUser> _userManager;

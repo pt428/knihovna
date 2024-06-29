@@ -1,11 +1,13 @@
 ﻿using Knihovna.Models;
 using Knihovna.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Knihovna.Controllers
 {
-	public class BorrowedController : Controller
+    [Authorize]
+    public class BorrowedController : Controller
 	{
 		private BorrowedService _borrowedService;
 		private UserManager<AppUser> _userManager;

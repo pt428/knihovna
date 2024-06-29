@@ -1,11 +1,13 @@
 ﻿using Knihovna.Models;
 using Knihovna.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Knihovna.Controllers
 {
-	public class ReservationController : Controller
+    [Authorize]
+    public class ReservationController : Controller
 	{
 		private ReservationService _reservationService;
 		private UserManager<AppUser> _userManager;

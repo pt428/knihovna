@@ -24,7 +24,7 @@ builder.Services.Configure<IdentityOptions>(opt =>
 	opt.Password.RequiredLength = 8;
 	opt.Password.RequireLowercase = true;
 });
-builder.Services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Authenticate/Login");
+builder.Services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Account/Login");
 builder.Services.ConfigureApplicationCookie(opt =>
 {
 	opt.Cookie.Name = ".AspNetCore.Identity.Application";

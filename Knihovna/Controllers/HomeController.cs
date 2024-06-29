@@ -7,7 +7,8 @@ using System.Globalization;
 
 namespace Knihovna.Controllers
 {
-	public class HomeController : Controller
+    [Authorize]
+    public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
 		private UserManager<AppUser> _userManager;
@@ -18,7 +19,7 @@ namespace Knihovna.Controllers
 			_logger = logger;
 			_userManager = userManager;
 		}
-		[Authorize]
+		 
 		public async Task< IActionResult> Index()
 		{
 			AppUser user = await _userManager.GetUserAsync(HttpContext.User);

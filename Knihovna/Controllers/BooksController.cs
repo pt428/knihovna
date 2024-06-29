@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Knihovna.DTO;
 using Microsoft.AspNetCore.Identity;
 using Knihovna.Models;
+using Microsoft.AspNetCore.Authorization;
 namespace Knihovna.Controllers
 {
-	public class BooksController : Controller
+    [Authorize]
+    public class BooksController : Controller
 	{
 		private BookService _bookService;
 		private UserManager<AppUser> _userManager;
