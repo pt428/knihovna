@@ -4,54 +4,77 @@
 @{
 	ViewData["Title"] = "READ USER";
 }
-<div style="background-color: lightcyan;">
+<div class="container mt-5"	style="background-color: lightcyan;">
 	<h1 class="text-center">Uživatelé</h1>
-</div>
-@*tlačítko pro vytvoření nového uživatele*@
-<a asp-action="Create" class="btn btn-success w-100">Zaregistrovat nového uživatele</a>
-@*tabulka bude mít vyznačené okraje*@
-<table class="table table-secondary table-bordered table-striped">
-	@*definice prvního řádku tabulky s nadpisy sloupců (budou tučně)*@
-	@*<tr> = table row*@
-	<tr>
-		@*<th> = table header*@
-		<th>ID</th>
-		<th>ID</th>
-		<th>Funkce</th>
-		<th>FirstName</th>
-		<th>LastName</th>
-		<th>UserName</th>
-		<th>Email</th>
-		<th>Update</th>
-		<th>Delete</th>
-	</tr>
-	@*rozdělení vlastností uživatele do jednotlivých buněk tabulky - držíme se
-	schématu z table headeru - id, name, email, tlačítka pro update a delete*@
-	@foreach (var user in Model)
-	{
-		<tr>
-			<td>@user.Id</td>
-			<td>@user.AppUserId</td>
-			<td>@user.RoleNames</td>
-			<td>@user.FirstName</td>
-			<td>@user.LastName</td>
-			<td>@user.UserName</td>
-			<td>@user.Email</td>
-			@if (user.Email != "Admin@seznam.cz")
-			{
-				<td>
-					<a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.AppUserId"> Update</a>
-				</td>
-				<td>
 
-					<form asp-route-id="@user.Id" asp-action="Delete" method="post">
-						<button type="submit" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</button>
-					</form>
-				</td>
-			}else{
-				<td></td>
-				<td></td>
-			}
-		</tr>
-	}
-</table>
+	@*tlačítko pro vytvoření nového uživatele*@
+	<a asp-action="Create" class="btn btn-success w-100">Zaregistrovat nového uživatele</a>
+	@*tabulka bude mít vyznačené okraje*@
+	<div class="table-responsive">
+ 
+		@foreach (var user in Model)
+		{
+	<table class="table table-secondary table-bordered table-striped">
+ 
+		<thead>
+
+			<tr>
+				@*<th> = table header*@
+				@* <th class="col">ID</th> *@
+				<th>ID</th>
+				<th>Funkce</th>
+				<th>Jméno</th>
+				<th>Příjmení</th>
+			</tr>
+
+		</thead>
+			<tbody>
+
+				<tr>
+					@* <td>@user.Id</td> *@
+					<td>@user.AppUserId</td>
+					<td>@user.RoleNames</td>
+					<td>@user.FirstName</td>
+					<td>@user.LastName</td>
+				</tr>
+			</tbody>
+			<thead>
+					<tr >
+						<th colspan="2">Login</th>
+						<th colspan="2">Email</th>
+		 
+					</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+						<td colspan="2">@user.UserName</td>
+						<td colspan="2">@user.Email</td>
+					
+				</tr>
+				<tr>
+						 
+						@if (user.Email != "Admin@seznam.cz")
+						{
+							<td colspan="2"></td>
+							<td >
+								<a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.AppUserId"> Update</a>
+							</td>
+							<td >
+								<form asp-route-id="@user.Id" asp-action="Delete" method="post">
+									<button type="submit" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-sm btn-danger">Delete</button>
+								</form>
+							</td>
+						}
+						else
+						{
+							<td colspan="4"></td>
+							
+						 
+						}
+				</tr>
+			</tbody>
+	</table>
+		}
+</div>
+</div>

@@ -35,9 +35,26 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs)
 		{
-
+			IQueryable<Book> allBooks;
 			//var allBooks = await _dbContext.Books.ToListAsync();
-			IQueryable<Book> allBooks = _dbContext.Books;
+			if (bookParametrs.OrderBy == "author")
+			{
+				allBooks = _dbContext.Books.OrderBy(x => x.AuthorName);
+			}
+			else if (bookParametrs.OrderBy == "genre")
+			{
+				allBooks = _dbContext.Books.OrderBy(x => x.Genre);
+			}
+			else if (bookParametrs.OrderBy == "year")
+			{
+				allBooks = _dbContext.Books.OrderBy(x => x.Year);
+			}
+			else if (bookParametrs.OrderBy == "isbn")
+			{
+				allBooks = _dbContext.Books.OrderBy(x => x.ISBN);
+			}
+			else { allBooks = _dbContext.Books.OrderBy(x => x.Title); }
+
 			if (bookParametrs.AuthorName != null)
 			{
 				allBooks = allBooks.Where(b => b.AuthorName == bookParametrs.AuthorName);
@@ -65,15 +82,17 @@ namespace Knihovna.Services
 			{
 				BookDto bookDto = modelToDto(book);
 				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id == book.UserWhoBorrowedId);
-				 if(UserWhoBorrowed?.AppUser != null) {
+				if (UserWhoBorrowed?.AppUser != null)
+				{
 					bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null ? UserWhoBorrowed.FirstName + " " + UserWhoBorrowed.LastName : "";
 					bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
-				 }
-				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id  == book.UserWhoReservedId);
-				 if(UserWhoReserved?.AppUser != null) {
+				}
+				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id == book.UserWhoReservedId);
+				if (UserWhoReserved?.AppUser != null)
+				{
 					bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
-					bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : ""; 
-				}	 
+					bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : "";
+				}
 				bookDtos.Add(bookDto);
 
 			}
@@ -93,6 +112,7 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task DeleteAsync(int id)
 		{
+			 
 			var bookToDelete = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
 			if (bookToDelete != null)
 			{
@@ -106,9 +126,9 @@ namespace Knihovna.Services
 		public async Task<BookDto> GetByIdAsync(int id)
 		{
 			var book = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			if(book != null)
+			if (book != null)
 			{
-			return modelToDto(book);
+				return modelToDto(book);
 			}
 			return new BookDto();
 		}
@@ -202,7 +222,7 @@ namespace Knihovna.Services
 				bookToBorrow.Reserved = false;
 				bookToBorrow.UserWhoReservedId = "";
 				bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToString("dd.MM.yyyy");
-				 
+
 				_dbContext.Update(bookToBorrow);
 				await _dbContext.SaveChangesAsync();
 			}

@@ -4,52 +4,70 @@
 <!-- Main Container -->
 <div class="container mt-5">
 	<div style="background-color: lightcyan;">
-	<!-- Book List -->
-		<h1 class="text-center">Seznam knih</h1> 
-	<div class="container mt-5">
- 		<form method="get">
+		<!-- Book List -->
+		<h1 class="text-center">Seznam knih</h1>
+		<div class="container mt-5">
+			<form method="get">
+				<div class="d-flex flex-row align-self-center mb-3">
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="Title">Titul</label>
+						<input type="text" class="form-control" id="Title" name="Title" placeholder="Zadejte titul knihy">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="AuthorName">Autor</label>
+						<input type="text" class="form-control" id="AuthorName" name="AuthorName" placeholder="Zadejte jméno autora">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="Genre">Žánr</label>
+						<input type="text" class="form-control" id="Genre" name="Genre" placeholder="Zadejte žánr">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="Year">Rok</label>
+						<input type="text" class="form-control" id="Year" name="Year" placeholder="Zadejte rok">
+					</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<label for="ISBN">ISBN</label>
+						<input type="text" class="form-control" id="ISBN" name="ISBN" placeholder="Zadejte ISBN">
+					</div>
+					<div class="form-group  mx-sm-3 mb-2 align-self-end">
+						<button type="submit" class="btn btn-primary">Vyhledat</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container mt-5">
 			<div class="d-flex flex-row align-self-center mb-3">
 				<div class="form-group mx-sm-3 mb-2">
-					<label for="Title">Titul</label>
-					<input type="text" class="form-control" id="Title" name="Title" placeholder="Zadejte titul knihy">
+					<a class=" " asp-action="Index" asp-route-orderby="title">Řadit podle titulu</a>
 				</div>
 				<div class="form-group mx-sm-3 mb-2">
-					<label for="AuthorName">Autor</label>
-					<input type="text" class="form-control" id="AuthorName" name="AuthorName" placeholder="Zadejte jméno autora">
+					<a class=" " asp-action="Index" asp-route-orderby="author">Řadit podle autora</a>
+				</div>				<div class="form-group mx-sm-3 mb-2">
+					<a class=" " asp-action="Index" asp-route-orderby="genre">Řadit podle žánru</a>
 				</div>
 				<div class="form-group mx-sm-3 mb-2">
-					<label for="Genre">Žánr</label>
-					<input type="text" class="form-control" id="Genre" name="Genre" placeholder="Zadejte žánr">
-				</div>
+					<a class=" " asp-action="Index" asp-route-orderby="year">Řadit podle roku</a>
+				</div>				
 				<div class="form-group mx-sm-3 mb-2">
-					<label for="Year">Rok</label>
-					<input type="text" class="form-control" id="Year" name="Year" placeholder="Zadejte rok">
-				</div>
-				<div class="form-group mx-sm-3 mb-2">
-					<label for="ISBN">ISBN</label>
-					<input type="text" class="form-control" id="ISBN" name="ISBN" placeholder="Zadejte ISBN">
-				</div>
-				<div class="form-group  mx-sm-3 mb-2 align-self-end">
-					<button type="submit" class="btn btn-primary">Vyhledat</button>
+					<a class=" " asp-action="Index" asp-route-orderby="isbn">Řadit podle ISBN</a>
 				</div>
 			</div>
-		</form>
-	</div>
-		@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+		</div>
+		@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 		{
 			<hr />
 			<div>
 				<a asp-action="Create" class="btn btn-success w-100 ">Přidat knihu</a>
 			</div>
 		}
-	<hr />
+		<hr />
 	</div>
 	@foreach (var book in Model)
 	{
 		DateTime DateOfReturn;
-		@if (!string.IsNullOrEmpty(book?.DateOfReturn))	{DateOfReturn = DateTime.ParseExact(book.DateOfReturn, "dd.MM.yyyy", CultureInfo.InvariantCulture);}
-		else{DateOfReturn = DateTime.MinValue;}
-		
+		@if (!string.IsNullOrEmpty(book?.DateOfReturn)) { DateOfReturn = DateTime.ParseExact(book.DateOfReturn, "dd.MM.yyyy", CultureInfo.InvariantCulture); }
+		else { DateOfReturn = DateTime.MinValue; }
+
 		<table class="table table-secondary table-bordered table-striped">
 			<thead>
 				<tr>
@@ -94,7 +112,7 @@
 								<div style="width:150px;">
 									@if (book.Reserved)
 									{
-										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											<form method="post" class="form-inline">
 												<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
@@ -126,7 +144,7 @@
 								<div class="ms-1" style="width:150px;">
 									@if (book.Borrowed)
 									{
-										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 
 											<form method="post" class="form-inline">
@@ -154,7 +172,7 @@
 									}
 									else
 									{
-										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											@if (book.Reserved)
 											{
@@ -167,7 +185,7 @@
 									}
 								</div>
 							</div>
-							@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+							@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 							{
 
 								<div class="d-flex justify-content-end ">
@@ -175,9 +193,32 @@
 										<a class="btn btn-outline-primary w-100" asp-action="Edit" asp-route-id="@book.Id">Editovat</a>
 									</div>
 									<div>
-										<form method="post" class="form-inline">
-											<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-outline-danger  w-100">Smazat</button>
-										</form>
+										<button type="button" class="btn btn-outline-danger  w-100" data-bs-toggle="modal" data-bs-target="#deleteModal">
+											Smazat
+										</button>
+									</div>
+								</div>
+								<!-- Button trigger modal -->
+							
+
+								<!-- Modal -->
+								<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h1 class="modal-title fs-5" id="ModalLabel">Smazat knihu</h1>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+											</div>
+											<div class="modal-body">
+												Opravdu chcete knihu smazat?
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
+												<form method="post" class="form-inline">
+													<button type="submit" asp-route-id="@book.Id" asp-action="Delete" class="btn btn-outline-danger  w-100">Smazat</button>
+												</form>
+											</div>
+										</div>
 									</div>
 								</div>
 							}

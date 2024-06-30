@@ -1,4 +1,6 @@
-﻿namespace Knihovna.Models
+﻿using System.Globalization;
+
+namespace Knihovna.Models
 {
 	public class BookParametrs
 	{
@@ -7,5 +9,6 @@
 		public string? ISBN { get; set; }
 		public string? Genre { get; set; }
 		public string? Year { get; set; }
+		public string? OrderBy { get; set; }
 	}
 }

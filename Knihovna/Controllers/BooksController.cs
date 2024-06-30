@@ -68,6 +68,7 @@ namespace Knihovna.Controllers
 		[HttpPost]
 		public async Task<IActionResult> DeleteAsync(int id)
 		{
+			
 			BookDto bookToDelete = await _bookService.GetByIdAsync(id);
 			if (bookToDelete == null)
 			{
