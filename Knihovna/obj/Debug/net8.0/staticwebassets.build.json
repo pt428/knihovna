@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZZCAKBl779EpD3acsP+zVpQhx1cCaJsQec7T9Q0f2Ss=",
+  "Hash": "jkV9F9OcUQ91+mJzGAD48WcrJrFzz7HJYQejQBGADos=",
   "Source": "Knihovna",
   "BasePath": "_content/Knihovna",
   "Mode": "Default",
@@ -91,25 +91,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\Images\\knihovna.jpg",
-      "SourceId": "Knihovna",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\",
-      "BasePath": "_content/Knihovna",
-      "RelativePath": "Images/knihovna.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\knihovna.jpg"
     },
     {
       "Identity": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\js\\site.js",

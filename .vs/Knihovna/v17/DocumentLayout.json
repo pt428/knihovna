@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\onedrive\\1_vsb rekvalifikace\\2-c#\\moje projekty\\knihovna\\knihovna\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\onedrive\\1_vsb rekvalifikace\\2-c#\\moje projekty\\knihovna\\knihovna\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\onedrive\\1_vsb rekvalifikace\\2-c#\\moje projekty\\knihovna\\knihovna\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\onedrive\\1_vsb rekvalifikace\\2-c#\\moje projekty\\knihovna\\knihovna\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\roles\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|c:\\users\\pt75\\onedrive\\1_vsb rekvalifikace\\2-c#\\moje projekty\\knihovna\\knihovna\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{639F4025-7DF3-4BB1-9F1E-EFE1A05BC8BA}|Knihovna\\Knihovna.csproj|solutionrelative:knihovna\\views\\books\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -26,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 80,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,20 +66,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-30T12:11:21.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Roles\\Index.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Roles\\Index.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Roles\\Index.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Roles\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-30T11:51:44.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "Knihovna\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "Knihovna\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-06-30T11:39:11.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Knihovna\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Knihovna\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAAEcAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-30T11:15:20.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Books\\Index.cshtml",
               "RelativeDocumentMoniker": "Knihovna\\Views\\Books\\Index.cshtml",
               "ToolTip": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Views\\Books\\Index.cshtml",
               "RelativeToolTip": "Knihovna\\Views\\Books\\Index.cshtml",
-              "ViewState": "AQIAALoAAAAAAAAAAAAcwNQAAAAoAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-30T10:53:17.982Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "BookService.cs",
               "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Services\\BookService.cs",
               "RelativeDocumentMoniker": "Knihovna\\Services\\BookService.cs",
@@ -71,12 +139,11 @@
               "RelativeToolTip": "Knihovna\\Services\\BookService.cs",
               "ViewState": "AQIAAF8AAAAAAAAAAAAvwHIAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T10:46:43.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-30T10:46:43.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "BooksController.cs",
               "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Controllers\\BooksController.cs",
               "RelativeDocumentMoniker": "Knihovna\\Controllers\\BooksController.cs",
@@ -84,12 +151,11 @@
               "RelativeToolTip": "Knihovna\\Controllers\\BooksController.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAAAEEAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T10:45:42.071Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-30T10:45:42.071Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\pt75\\OneDrive\\1_VSB rekvalifikace\\2-C#\\Moje projekty\\Knihovna\\Knihovna\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Knihovna\\Controllers\\AccountController.cs",
@@ -97,8 +163,7 @@
               "RelativeToolTip": "Knihovna\\Controllers\\AccountController.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T10:45:37.468Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-30T10:45:37.468Z"
             }
           ]
         }

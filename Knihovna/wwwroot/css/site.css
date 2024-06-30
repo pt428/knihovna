@@ -18,5 +18,14 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-size: cover; /* Cover the entire background */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url('../Images/knihovna.jpg');
+     background-position: center;
+    background-attachment: fixed; 
+    min-height: 80vh;
+}
+footer {
+    bottom: -40px !important;
+     
 }

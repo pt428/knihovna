@@ -1,7 +1,6 @@
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\Knihovna.exe
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\appsettings.json
-C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\Views\Shared\knihovna.jpg
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\Knihovna.dll
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\Knihovna.runtimeconfig.json
 C:\Users\pt75\OneDrive\1_VSB rekvalifikace\2-C#\Moje projekty\Knihovna\Knihovna\obj\Release\net8.0\PubTmp\Out\Knihovna.pdb
