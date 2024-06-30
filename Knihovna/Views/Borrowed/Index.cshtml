@@ -62,10 +62,10 @@
 								<div style="width:150px;">
 									@if (book.Reserved)
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											<form method="post" class="form-inline">
-												<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
+												<button type="submit" asp-route-id="@book.Id" asp-controller="books" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
 											</form><br />
 								
 										}
@@ -76,7 +76,7 @@
 									else
 									{
 										<form method="post" class="form-inline">
-											<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-warning w-100">Rezervovat knihu</button>
+											<button type="submit" asp-route-id="@book.Id" asp-controller="books" asp-action="Rezervation" class="btn btn-warning w-100">Rezervovat knihu</button>
 										</form>
 									}
 								</div>
@@ -84,11 +84,11 @@
 								<div class="ms-1" style="width:150px;">
 									@if (book.Borrowed)
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if ( User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 
 											<form method="post" class="form-inline">
-												<button type="submit" asp-route-id="@book.Id" asp-action="BorrowCancel" class="btn btn-outline-danger  w-100">Vrátit knihu</button>
+												<button type="submit" asp-route-id="@book.Id" asp-controller="books" asp-action="BorrowCancel" class="btn btn-outline-danger  w-100">Vrátit knihu</button>
 											</form>
 										}
 										<span>@book.UserWhoBorrowedName</span>
@@ -112,12 +112,12 @@
 									}
 									else
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											@if (book.Reserved)
 											{
 												<form method="post" class="form-inline">
-													<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
+													<button type="submit" asp-controller="books" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
 												</form>
 											}
 

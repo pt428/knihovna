@@ -53,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+		@if ( User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 		{
 			<hr />
 			<div>
@@ -112,7 +112,7 @@
 								<div style="width:150px;">
 									@if (book.Reserved)
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if ( User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											<form method="post" class="form-inline">
 												<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
@@ -144,7 +144,7 @@
 								<div class="ms-1" style="width:150px;">
 									@if (book.Borrowed)
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (  User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 
 											<form method="post" class="form-inline">
@@ -172,9 +172,9 @@
 									}
 									else
 									{
-										@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										if ( User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
-											@if (book.Reserved)
+											if (book.Reserved)
 											{
 												<form method="post" class="form-inline">
 													<button type="submit" asp-route-id="@book.Id" asp-action="Borrow" class="btn btn-success w-100">Půjčit knihu</button>
@@ -185,7 +185,7 @@
 									}
 								</div>
 							</div>
-							@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+							@if ( User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 							{
 
 								<div class="d-flex justify-content-end ">

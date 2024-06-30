@@ -28,7 +28,7 @@ builder.Services.ConfigureApplicationCookie(opts => opts.LoginPath = "/Account/L
 builder.Services.ConfigureApplicationCookie(opt =>
 {
 	opt.Cookie.Name = ".AspNetCore.Identity.Application";
-	opt.ExpireTimeSpan = TimeSpan.FromMinutes(1000);
+	opt.ExpireTimeSpan = TimeSpan.FromMinutes(10);
 	opt.SlidingExpiration = true;
 });
 var app = builder.Build();
