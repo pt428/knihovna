@@ -13,7 +13,7 @@ namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240627102148_identity")]
-    partial class identity
+    partial class Identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

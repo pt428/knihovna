@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Knihovna.Migrations
 {
     /// <inheritdoc />
-    public partial class removeemployee : Migration
+    public partial class Removeemployee : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

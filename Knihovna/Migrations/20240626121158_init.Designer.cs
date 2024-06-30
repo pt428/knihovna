@@ -13,7 +13,7 @@ namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240626121158_init")]
-    partial class init
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

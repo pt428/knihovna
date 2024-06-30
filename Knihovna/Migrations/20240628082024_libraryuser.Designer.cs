@@ -13,7 +13,7 @@ namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240628082024_libraryuser")]
-    partial class libraryuser
+    partial class Libraryuser
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

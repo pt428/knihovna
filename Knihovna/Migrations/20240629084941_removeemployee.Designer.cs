@@ -13,7 +13,7 @@ namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240629084941_removeemployee")]
-    partial class removeemployee
+    partial class Removeemployee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

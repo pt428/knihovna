@@ -38,7 +38,7 @@ namespace Knihovna.Controllers
 		[HttpPost]
 		public async Task< IActionResult> CreateAsync(BookDto newBookDto)
 		{
-			_bookService.CreateAsync(newBookDto);
+		 await	_bookService.CreateAsync(newBookDto);
 			return Redirect("Index");
 		}
 		//*******************************
@@ -87,9 +87,14 @@ namespace Knihovna.Controllers
 			{
 				return View("NotFound");
 			}
-            AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+            AppUser? user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user!=null)
+            {
             await _bookService.ReservationAsync(id,user);
+                
 			return RedirectToAction("Index");
+            }
+			return View("NotFound");
 		}
 		//******************************************
 		//********* REZERVATION CANCEL  ************
@@ -117,7 +122,7 @@ namespace Knihovna.Controllers
 			{
 				return View("NotFound");
 			}
-			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+			AppUser? user = await _userManager.GetUserAsync(HttpContext.User);
 			await _bookService.BorrowAsync(id);
 	 
 			return RedirectToAction("Index");
@@ -133,7 +138,7 @@ namespace Knihovna.Controllers
 			{
 				return View("NotFound");
 			}
-			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+			AppUser? user = await _userManager.GetUserAsync(HttpContext.User);
 			await _bookService.BorrowCancelAsync(id);
 	 
 			return RedirectToAction("Index");

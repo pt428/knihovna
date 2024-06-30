@@ -1,4 +1,5 @@
 ﻿    @using Knihovna.DTO
+	@using System.Globalization
     @model IEnumerable< BookDto>
 <!-- Main Container -->
 <div class="container mt-5">
@@ -10,10 +11,13 @@
 	</div>
 	@foreach (var book in Model)
 	{
+		DateTime DateOfReturn;
+		@if (!string.IsNullOrEmpty(book?.DateOfReturn)) { DateOfReturn = DateTime.ParseExact(book.DateOfReturn, "dd.MM.yyyy", CultureInfo.InvariantCulture); }
+		else { DateOfReturn = DateTime.MinValue; }
 		<table class="table table-secondary table-bordered table-striped table-hover">
 			<thead>
 				<tr>
-					@if (book.Borrowed && Convert.ToDateTime(book.DateOfReturn) < DateTime.Now)
+					@if (book is not null && book.Borrowed && DateOfReturn < DateTime.Now)
 					{
 						<td colspan="5" style="background-color:red;"></td>
 					}
@@ -58,21 +62,14 @@
 										{
 											<form method="post" class="form-inline">
 												<button type="submit" asp-route-id="@book.Id" asp-action="RezervationCancel" class="btn btn-outline-danger  w-100">Zrušit rezervaci</button>
-											</form>
-
-											<br />
+											</form>	<br />
 										}
-										<span>@book.UserWhoReservedName</span>
-
-										<br />
-										<span>@book.UserWhoReservedEmail</span>
-
-										<br />
+										<span>@book.UserWhoReservedName</span><br />
+										<span>@book.UserWhoReservedEmail</span><br />
 										<span style="color: red;"> Rezervováno</span>
 									}
 									else
 									{
-
 										<form method="post" class="form-inline">
 											<button type="submit" asp-route-id="@book.Id" asp-action="Rezervation" class="btn btn-warning w-100">Rezervovat knihu</button>
 										</form>
@@ -93,7 +90,7 @@
 
 										<br />
 										<span>@book.UserWhoBorrowedEmail</span>	<br />
-										@if (Convert.ToDateTime(book.DateOfReturn) > DateTime.Now)
+										@if (DateOfReturn > DateTime.Now)
 										{
 											<span style="color: red;"> Půjčeno do </span>
 											<span>@book.DateOfReturn</span>
@@ -110,7 +107,7 @@
 									}
 									else
 									{
-										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
+										@if (User?.Identity?.IsAuthenticated ?? false &&   User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Knihovník"))
 										{
 											@if (book.Reserved)
 											{

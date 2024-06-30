@@ -28,11 +28,13 @@ namespace Knihovna.Services
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
 			{
-				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
-		 
-				BookDto bookDto = modelToDto(book);
+				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id == book.UserWhoBorrowedId);
+		 		BookDto bookDto = modelToDto(book);
+				if(UserWhoBorrowed?.AppUser != null)
+				{
 				bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null ? UserWhoBorrowed.FirstName + " " + UserWhoBorrowed.LastName : "";			 
 				bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
+				}
  
 				if (roleNames.Contains("Admin") || roleNames.Contains("Knihovník"))
                 {

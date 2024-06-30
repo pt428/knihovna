@@ -13,7 +13,7 @@ namespace Knihovna.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240629070716_changetypeofdateofreturn")]
-    partial class changetypeofdateofreturn
+    partial class Changetypeofdateofreturn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

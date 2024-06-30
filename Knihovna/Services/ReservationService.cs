@@ -23,16 +23,18 @@ namespace Knihovna.Services
 		{
 			 
 			var roles = await _userManager.GetRolesAsync(appUser);
-            string roleNames = string.Join(", ", roles);
-            
+            string roleNames = string.Join(", ", roles);            
 			var allBooks = await _dbContext.Books.Where(x => x.Reserved == true).ToListAsync();
 			var bookDtos = new List<BookDto>();
 			foreach (var book in allBooks)
-			{ 
-				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoReservedId);
-				BookDto bookDto = modelToDto(book);				 
-				bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";				 
+			{
+				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id == book.UserWhoReservedId);
+				BookDto bookDto = modelToDto(book);
+				bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
+				if (UserWhoReserved?.AppUser != null)
+				{
 				bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : "";
+				}
 				if (roleNames.Contains("Admin") || roleNames.Contains("Knihovník"))
                 {
 					bookDtos.Add(bookDto);
@@ -40,8 +42,7 @@ namespace Knihovna.Services
 				else if ( appUser.Id == book.UserWhoReservedId)
 				{
 					bookDtos.Add(bookDto);
-				}
-			 
+				}			 
 			}
 			return bookDtos;
 		}

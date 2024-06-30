@@ -54,7 +54,7 @@ namespace Knihovna.Controllers
         //*******************************
         public async Task<IActionResult> Edit(string id)
         {
-            IdentityRole identityRole = await _roleManager.FindByIdAsync(id);
+            IdentityRole? identityRole = await _roleManager.FindByIdAsync(id);
             List<AppUser> members = new List<AppUser>();
             List<AppUser> nonMembers = new List<AppUser>();
             foreach (AppUser appUser in _userManager.Users)
@@ -81,7 +81,7 @@ namespace Knihovna.Controllers
             {
                 foreach (string userId in roleModification.AddIds ?? new string[] { })
                 {
-                    AppUser user = await _userManager.FindByIdAsync(userId);
+                    AppUser? user = await _userManager.FindByIdAsync(userId);
                     if (user != null)
                     {
                         identityResult = await _userManager.AddToRoleAsync(user, roleModification.RoleName);
@@ -94,7 +94,7 @@ namespace Knihovna.Controllers
                 }
                 foreach (string userId in roleModification.DeleteIds ?? new string[] { })
                 {
-                    AppUser user = await _userManager.FindByIdAsync(userId);
+                    AppUser? user = await _userManager.FindByIdAsync(userId);
                     if (user != null)
                     {
                         identityResult = await _userManager.RemoveFromRoleAsync(user, roleModification.RoleName);
@@ -118,7 +118,7 @@ namespace Knihovna.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            IdentityRole identityRole = await _roleManager.FindByIdAsync(id);
+            IdentityRole? identityRole = await _roleManager.FindByIdAsync(id);
             if (identityRole != null)
             {
                 IdentityResult identityResult = await _roleManager.DeleteAsync(identityRole);

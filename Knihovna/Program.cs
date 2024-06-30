@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
 	options.UseSqlServer(
-		builder.Configuration["ConnectionStrings:LibraryDbConnection"]);
+		builder.Configuration["ConnectionStrings:MonsterDb"]);
 });
 builder.Services.AddScoped<BookService>();
 //builder.Services.AddScoped<EmployeeService>();
@@ -39,6 +39,7 @@ if (!app.Environment.IsDevelopment())
 	app.UseExceptionHandler("/Home/Error");
 	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
+	app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();

@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace Knihovna.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
@@ -19,21 +19,28 @@ namespace Knihovna.Controllers
 			_logger = logger;
 			_userManager = userManager;
 		}
-		 
-		public async Task< IActionResult> Index()
+        //*******************************
+        //********* INDEX   ************
+        //*******************************
+        [Authorize]
+        public async Task< IActionResult> Index()
 		{
-			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-			string message =   user.UserName;
+			AppUser? user = await _userManager.GetUserAsync(HttpContext.User);
+			//string? message =   user.UserName;
 
-			return View("Index",message);
+			return View("Index" );
 		}
-
-		public IActionResult Privacy()
+        //*******************************
+        //********* PRIVACY   ************
+        //*******************************
+        public IActionResult Privacy()
 		{
 			return View();
 		}
-
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //*******************************
+        //********* ERROR   ************
+        //*******************************
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

@@ -25,18 +25,20 @@
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Seznam knih</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Seznam rezervací</a>
-						</li>
+						@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated)
+						{
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Seznam knih</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Seznam rezervací</a>
+							</li>
 
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Borrowed" asp-action="Index">Seznam vypůjček</a>
-						</li>
-
-						@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Borrowed" asp-action="Index">Seznam vypůjček</a>
+							</li>
+						}
+						@if (User?.Identity?.IsAuthenticated ?? false && User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 						{
 							<li class="nav-item">
 								<a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Seznam uživatelů</a>
@@ -58,7 +60,7 @@
 		</nav>
 	</header>
 	<div style="position: relative;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(255, 255, 255, 0.7)),url('knihovna.jpg');
+		background-image: linear-gradient(rgba(0, 0, 0, 0.7),rgba(255, 255, 255, 0.7)),url();
 		 background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;

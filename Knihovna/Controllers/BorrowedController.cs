@@ -11,12 +11,12 @@ namespace Knihovna.Controllers
 	{
 		private BorrowedService _borrowedService;
 		private UserManager<AppUser> _userManager;
-		private RoleManager<IdentityRole> _roleManager;
-		public BorrowedController(BorrowedService borrowedService, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+		 
+		public BorrowedController(BorrowedService borrowedService, UserManager<AppUser> userManager )
 		{
 			_borrowedService = borrowedService;
 			_userManager = userManager;
-			_roleManager = roleManager;
+			 
 		}
 
 		//*******************************
@@ -24,9 +24,14 @@ namespace Knihovna.Controllers
 		//*******************************
 		public async Task<IActionResult> Index()
 		{
-			AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-			var allBooks = await _borrowedService.GetAllAsync(user);
+			AppUser? user = await _userManager.GetUserAsync(HttpContext.User);
+            if (user != null)
+            {
+            var allBooks = await _borrowedService.GetAllAsync(user);
 			return View(allBooks);
+                
+            }
+			return View();
 		}
 	}
 }

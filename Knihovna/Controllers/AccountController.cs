@@ -18,7 +18,9 @@ namespace Knihovna.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-
+        //*******************************
+        //********* LOGIN START ************
+        //*******************************
         [AllowAnonymous]
         public IActionResult Login(string returnUrl)
         {
@@ -31,7 +33,9 @@ namespace Knihovna.Controllers
             return View();
 
         }
-
+        //*******************************
+        //********* LOGIN END   ************
+        //*******************************
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -39,7 +43,7 @@ namespace Knihovna.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser appUser = await _userManager.FindByNameAsync(loginVM.UserName);
+                AppUser? appUser = await _userManager.FindByNameAsync(loginVM.UserName);
                 if (appUser == null)
                 {
 
@@ -61,8 +65,10 @@ namespace Knihovna.Controllers
             }
             return View(loginVM);
         }
-
-		public async Task<IActionResult> Logout()
+        //*******************************
+        //********* LOGOUT   ************
+        //*******************************
+        public async Task<IActionResult> Logout()
 		{
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");

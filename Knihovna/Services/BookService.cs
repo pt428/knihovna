@@ -2,10 +2,12 @@
 using Knihovna.Migrations;
 using Knihovna.Models;
 using Knihovna.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
+
 
 namespace Knihovna.Services
 {
@@ -31,7 +33,7 @@ namespace Knihovna.Services
 		//*******************************
 		//********* READ  ************
 		//*******************************
-		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs )
+		public async Task<IEnumerable<BookDto>> GetAllAsync(BookParametrs bookParametrs)
 		{
 
 			//var allBooks = await _dbContext.Books.ToListAsync();
@@ -56,22 +58,23 @@ namespace Knihovna.Services
 			{
 				allBooks = allBooks.Where(b => b.ISBN == bookParametrs.ISBN);
 			}
- 
+
 			var bookDtos = new List<BookDto>();
-		 
- 
+
 			foreach (var book in allBooks)
 			{
-				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoBorrowedId);
-				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser.Id == book.UserWhoReservedId);
 				BookDto bookDto = modelToDto(book);
-				bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null ? UserWhoBorrowed.FirstName + " " + UserWhoBorrowed.LastName : "";
-				bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
-				bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
-				bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : "";
-		 
-					bookDtos.Add(bookDto);
-				 
+				var UserWhoBorrowed = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id == book.UserWhoBorrowedId);
+				 if(UserWhoBorrowed?.AppUser != null) {
+					bookDto.UserWhoBorrowedName = UserWhoBorrowed is not null ? UserWhoBorrowed.FirstName + " " + UserWhoBorrowed.LastName : "";
+					bookDto.UserWhoBorrowedEmail = UserWhoBorrowed is not null ? UserWhoBorrowed.AppUser.Email : "";
+				 }
+				var UserWhoReserved = await _dbContext.LibraryUsers.Include(x => x.AppUser).FirstOrDefaultAsync(x => x.AppUser != null && x.AppUser.Id  == book.UserWhoReservedId);
+				 if(UserWhoReserved?.AppUser != null) {
+					bookDto.UserWhoReservedName = UserWhoReserved is not null ? UserWhoReserved.FirstName + " " + UserWhoReserved.LastName : "";
+					bookDto.UserWhoReservedEmail = UserWhoReserved is not null ? UserWhoReserved.AppUser.Email : ""; 
+				}	 
+				bookDtos.Add(bookDto);
 
 			}
 			return bookDtos;
@@ -91,9 +94,11 @@ namespace Knihovna.Services
 		public async Task DeleteAsync(int id)
 		{
 			var bookToDelete = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			_dbContext.Remove(bookToDelete);
-			await _dbContext.SaveChangesAsync();
-
+			if (bookToDelete != null)
+			{
+				_dbContext.Remove(bookToDelete);
+				await _dbContext.SaveChangesAsync();
+			}
 		}
 		//*******************************
 		//********* GET BY ID  ************
@@ -101,8 +106,11 @@ namespace Knihovna.Services
 		public async Task<BookDto> GetByIdAsync(int id)
 		{
 			var book = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			if(book != null)
+			{
 			return modelToDto(book);
-
+			}
+			return new BookDto();
 		}
 		//*******************************
 		//********* MODEL TO DTO  ************
@@ -157,49 +165,63 @@ namespace Knihovna.Services
 		//*******************************
 		public async Task ReservationAsync(int id, AppUser appUser)
 		{
-			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			bookToReservation.Reserved = true;
-			bookToReservation.UserWhoReservedId = appUser.Id;
-			_dbContext.Update(bookToReservation);
-			await _dbContext.SaveChangesAsync();
+			Book? bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			if (bookToReservation != null)
+			{
+				bookToReservation.Reserved = true;
+				bookToReservation.UserWhoReservedId = appUser.Id;
+				_dbContext.Update(bookToReservation);
+				await _dbContext.SaveChangesAsync();
+			}
 		}
 		//*******************************
 		//********* RESERVATION   ************
 		//*******************************
 		public async Task ReservationCancelAsync(int id)
 		{
-			Book bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			bookToReservation.Reserved = false;
-			bookToReservation.UserWhoReservedId = "";
-			_dbContext.Update(bookToReservation);
-			await _dbContext.SaveChangesAsync();
+			Book? bookToReservation = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			if (bookToReservation != null)
+			{
+				bookToReservation.Reserved = false;
+				bookToReservation.UserWhoReservedId = "";
+				_dbContext.Update(bookToReservation);
+				await _dbContext.SaveChangesAsync();
+			}
+
 		}
 		//*******************************
 		//********* BORROW   ************
 		//*******************************
-		public async Task BorrowAsync(int id )
+		public async Task BorrowAsync(int id)
 		{
-			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			bookToBorrow.Borrowed = true;
-			bookToBorrow.UserWhoBorrowedId=bookToBorrow.UserWhoReservedId;
-			bookToBorrow.Reserved=false;
-			bookToBorrow.UserWhoReservedId = "";
-			bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToShortDateString();
-		 
-			_dbContext.Update(bookToBorrow);
-			await _dbContext.SaveChangesAsync();
+			Book? bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			if (bookToBorrow != null)
+			{
+				bookToBorrow.Borrowed = true;
+				bookToBorrow.UserWhoBorrowedId = bookToBorrow.UserWhoReservedId;
+				bookToBorrow.Reserved = false;
+				bookToBorrow.UserWhoReservedId = "";
+				bookToBorrow.DateOfReturn = DateTime.Now.AddDays(30).ToString("dd.MM.yyyy");
+				 
+				_dbContext.Update(bookToBorrow);
+				await _dbContext.SaveChangesAsync();
+			}
+
 		}
 		//*******************************
 		//********* BORROW CANCEL  ************
 		//*******************************
-		public async Task BorrowCancelAsync(int id )
+		public async Task BorrowCancelAsync(int id)
 		{
-			Book bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
-			bookToBorrow.Borrowed = false;
-			bookToBorrow.UserWhoBorrowedId = "";
-			bookToBorrow.DateOfReturn = "";
-			_dbContext.Update(bookToBorrow);
-			await _dbContext.SaveChangesAsync();
+			Book? bookToBorrow = await _dbContext.Books.FirstOrDefaultAsync(x => x.Id == id);
+			if (bookToBorrow != null)
+			{
+				bookToBorrow.Borrowed = false;
+				bookToBorrow.UserWhoBorrowedId = "";
+				bookToBorrow.DateOfReturn = "";
+				_dbContext.Update(bookToBorrow);
+				await _dbContext.SaveChangesAsync();
+			}
 		}
 	}
 }

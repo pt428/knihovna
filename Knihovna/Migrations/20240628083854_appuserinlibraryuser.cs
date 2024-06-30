@@ -5,7 +5,7 @@
 namespace Knihovna.Migrations
 {
     /// <inheritdoc />
-    public partial class appuserinlibraryuser : Migration
+    public partial class Appuserinlibraryuser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

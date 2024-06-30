@@ -1,4 +1,5 @@
 ﻿    @using Knihovna.DTO
+	@using System.Globalization
     @model IEnumerable< BookDto>
 <!-- Main Container -->
 <div class="container mt-5">
@@ -45,10 +46,14 @@
 	</div>
 	@foreach (var book in Model)
 	{
+		DateTime DateOfReturn;
+		@if (!string.IsNullOrEmpty(book?.DateOfReturn))	{DateOfReturn = DateTime.ParseExact(book.DateOfReturn, "dd.MM.yyyy", CultureInfo.InvariantCulture);}
+		else{DateOfReturn = DateTime.MinValue;}
+		
 		<table class="table table-secondary table-bordered table-striped">
 			<thead>
 				<tr>
-					@if (book.Borrowed && Convert.ToDateTime(book.DateOfReturn) < DateTime.Now)
+					@if (book is not null && book.Borrowed && DateOfReturn < DateTime.Now)
 					{
 						<td colspan="5" style="background-color:red;"></td>
 					}
@@ -132,7 +137,7 @@
 											<br />
 											<span>@book.UserWhoBorrowedEmail</span>	<br />
 										}
-										@if (Convert.ToDateTime(book.DateOfReturn) > DateTime.Now)
+										@if (DateOfReturn > DateTime.Now)
 										{
 											<span style="color: red;"> Půjčeno do </span>
 											<span>@book.DateOfReturn</span>

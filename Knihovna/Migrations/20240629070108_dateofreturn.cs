@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Knihovna.Migrations
 {
     /// <inheritdoc />
-    public partial class dateofreturn : Migration
+    public partial class Dateofreturn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

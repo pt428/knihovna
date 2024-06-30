@@ -56,7 +56,7 @@ namespace Knihovna.Controllers
 
                 };
                 IdentityResult result = await _userManager.CreateAsync(appUser, userVM.Password);
-                IdentityRole identityRole = await _roleManager.FindByNameAsync("Čtenář");
+                IdentityRole? identityRole = await _roleManager.FindByNameAsync("Čtenář");
                 if (identityRole == null)
                 {
                     IdentityResult identityResult = await _roleManager.CreateAsync(new IdentityRole { Name = "Čtenář" });
@@ -93,7 +93,7 @@ namespace Knihovna.Controllers
 		//*******************************
 		public async Task<IActionResult> Edit(string id)
         {
-            AppUser appUserToEdit = await _userManager.FindByIdAsync(id);
+            AppUser? appUserToEdit = await _userManager.FindByIdAsync(id);
             if (appUserToEdit == null)
             {
                 return View("Notfound");
@@ -107,12 +107,12 @@ namespace Knihovna.Controllers
 		[HttpPost]
         public async Task<IActionResult> EditAsync(string id, string email, string password)
         {
-            AppUser appUser = await _userManager.FindByIdAsync(id);
+            AppUser? appUser = await _userManager.FindByIdAsync(id);
             if (appUser != null)
             {
                 appUser.UserName = email;
                 appUser.Email = email;
-                IdentityResult validPass=null;
+                IdentityResult? validPass=null;
                 validPass = await _passwordValidator.ValidateAsync(_userManager,appUser,password);
                 if (validPass.Succeeded)
                 {
@@ -157,7 +157,7 @@ namespace Knihovna.Controllers
             {
 				ModelState.AddModelError("", "Uživatel nenalezen");
 			}
-            AppUser appUser = await _userManager.FindByIdAsync(appUserId);
+            AppUser? appUser = await _userManager.FindByIdAsync(appUserId);
             if (appUser != null)
             {
                 IdentityResult identityResult = await _userManager.DeleteAsync(appUser);

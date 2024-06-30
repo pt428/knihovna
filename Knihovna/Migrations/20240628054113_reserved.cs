@@ -5,7 +5,7 @@
 namespace Knihovna.Migrations
 {
     /// <inheritdoc />
-    public partial class reserved : Migration
+    public partial class Reserved : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
